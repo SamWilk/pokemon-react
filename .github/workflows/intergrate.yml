@@ -26,11 +26,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14
-      - run: git pull origin main
       - run: npm i
       - run: npm run build
       - run: git config --global user.email ${{ secrets.MY_EMAIL }}
       - run: git config --global user.name ${{ secrets.MY_USER_NAME }}
       - run: git add dist -f
       - run: git commit -m "Adding dist to deploy"
-      - run: git subtree push --prefix dist origin gh-pages
+      - run: git push -f https://github.com/SamWilk/pokemon-react.git main:gh-pages
