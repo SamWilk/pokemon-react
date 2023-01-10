@@ -33,5 +33,5 @@ jobs:
     - run: git config --global user.name ${{ secrets.MY_USER_NAME }}
     - run: git checkout -B main
     - run: git add -A
-    - run: git commit -m 'deploy'
+    - run: git commit -am 'deploy'
     - run: git push -f https://github.com/SamWilk/pokemon-react.git main:gh-pages
