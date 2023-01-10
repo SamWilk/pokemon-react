@@ -32,5 +32,5 @@ jobs:
       - run: git config --global user.name ${{ secrets.MY_USER_NAME }}
       - run: git add dist -f
       - run: git commit -m "Adding dist to deploy"
-      - run: git push -f https://github.com/SamWilk/pokemon-react.git main:gh-pages
-      # - run: git subtree push --prefix dist origin gh-pages
+      # - run: git push -f https://github.com/SamWilk/pokemon-react.git main:gh-pages
+      - run: git subtree push --prefix dist origin gh-pages
