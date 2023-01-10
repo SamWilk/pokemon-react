@@ -28,7 +28,7 @@ jobs:
           node-version: 14
       - run: npm i
       - run: npm run build
-  Deploy with gh-pages:
+  Deploy-with-gh-pages:
     needs: deploy
     runs-on: ubuntu-latest
     steps:
