@@ -29,8 +29,8 @@ jobs:
     - run: npm ci
     - run: npm run build
     - run: cd dist
-    - run: git config --global user.email ${{ MY_EMAIL }}
-    - run: git config --global user.name ${{ MY_USER_NAME }}
+    - run: git config --global user.email ${{ secrets.MY_EMAIL }}
+    - run: git config --global user.name ${{ secrets.MY_USER_NAME }}
     - run: git checkout -B main
     - run: git add -A
     - run: git commit -m 'deploy'
