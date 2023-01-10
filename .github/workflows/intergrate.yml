@@ -30,6 +30,7 @@ jobs:
       - run: npm run build
       - run: git config --global user.email ${{ secrets.MY_EMAIL }}
       - run: git config --global user.name ${{ secrets.MY_USER_NAME }}
+      - run: git checkout origin/gh-pages
       - run: git fetch
       - run: git pull
       - run: git add dist -f
