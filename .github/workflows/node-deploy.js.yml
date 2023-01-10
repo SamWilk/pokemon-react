@@ -26,10 +26,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: cd dist
-    - run: git checkout -B main
-    - run: git add -A
-    - run: git commit -m 'deploy'
-    - run: git push -f https://github.com/SamWilk/pokemon-react.git main:gh-pages
+    - run: 
+        echo npm ci
+        echo npm run build
+        echo cd dist
+        echo git checkout -B main
+        echo git add -A
+        echo git commit -m 'deploy'
+        echo git push -f https://github.com/SamWilk/pokemon-react.git main:gh-pages
