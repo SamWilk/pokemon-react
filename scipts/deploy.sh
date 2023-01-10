@@ -3,6 +3,9 @@
 # abort on errors
 set -e
 
+# move out of sub folder
+cd ../
+
 # build
 npm run build
 
