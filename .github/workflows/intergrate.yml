@@ -30,7 +30,7 @@ jobs:
       - run: npm run build
       - run: git config --global user.email ${{ secrets.MY_EMAIL }}
       - run: git config --global user.name ${{ secrets.MY_USER_NAME }}
-      - run: git config pull.ff only
+      - run: git config pull.rebase true
       - run: git pull origin gh-pages
       - run: git add dist -f
       - run: git commit -m "Adding dist to deploy"
