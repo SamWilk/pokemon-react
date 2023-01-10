@@ -6,12 +6,12 @@ on:
       - "main"
 
 jobs:
-  test_build:
+  confirm-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
-      - run: npm ci
+          node-version: 14
+      - run: npm i
       - run: npm run build
