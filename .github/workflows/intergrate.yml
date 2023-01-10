@@ -6,9 +6,7 @@ on:
       - "main"
 
 permissions:
-  pull-requests: write
-  issues: write
-  repository-projects: write
+  contents: write
 
 jobs:
   confirm-build:
