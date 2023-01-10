@@ -26,7 +26,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14
-      - run: git config pull.rebase true
       - run: git pull origin gh-pages
       - run: npm i
       - run: npm run build
