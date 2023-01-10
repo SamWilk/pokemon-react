@@ -7,11 +7,7 @@ function App() {
 
   return (
     <div className="App">
-      <div>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
+      <div>Making a site for when I play Pokemon games</div>
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
