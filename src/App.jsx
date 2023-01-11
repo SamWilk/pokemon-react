@@ -8,11 +8,14 @@ function App() {
 
   useEffect(() => {
     FindPok();
+    console.log(pokeapi);
   }, []);
 
   const FindPok = async () => {
     let temp = [];
-    for (let i = 1; i < 600; i++) {
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=151`);
+    const body = await res.json();
+    for (let i = 1; i < body.results.length + 1; i++) {
       const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
       const body = await res.json();
       temp.push(body);
@@ -23,15 +26,11 @@ function App() {
   return (
     <div className="App">
       <div>Pokemon Tracker App</div>
-      {loadingFlag == true ? (
-        <div>Loading...</div>
-      ) : (
-        <div>
-          {pokeapi.map((poke, idx) => {
-            return <PokemonRow pokemon={poke} key={idx} />;
-          })}
-        </div>
-      )}
+      <div className="PokeContainer">
+        {pokeapi.map((poke, idx) => {
+          return <PokemonRow pokemon={poke} key={idx} />;
+        })}
+      </div>
     </div>
   );
 }
