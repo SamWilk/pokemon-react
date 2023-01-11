@@ -3,27 +3,17 @@ import "./App.css";
 import PokemonCell from "./Componets/RowComp/PokemonCell.jsx";
 
 function App() {
-  const [pokeapi, setPokeapi] = useState(new Array(1));
+  const [pokeapi, setPokeapi] = useState(new Array());
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    FindPok();
     console.log("Before");
     console.log(pokeapi);
+    FindPok();
   }, []);
 
   useEffect(() => {
-    console.log(
-      pokeapi.filter((e) => {
-        try {
-          if (e != undefined) {
-            e.species.name.includes(search);
-          }
-        } catch (error) {
-          console.error("Error happened:", error);
-        }
-      })
-    );
+    console.log();
   }, [search]);
 
   const FindPok = async () => {
@@ -44,17 +34,10 @@ function App() {
       <input value={search} onChange={(e) => setSearch(e.target.value)} />
       <div className="PokeContainer">
         {pokeapi
-          .filter((e) => {
-            try {
-              if (e != undefined) {
-                e.species.name.includes(search);
-              }
-            } catch (error) {
-              console.error("Error happened:", error);
-            }
-          })
+          .filter((element) =>
+            element.species.name.toLowerCase().includes(search.toLowerCase())
+          )
           .map((poke, idx) => {
-            console.log(poke.species.name);
             return <PokemonCell pokemon={poke} key={idx} />;
           })}
       </div>
