@@ -20,7 +20,6 @@ function App() {
   return (
     <div className="App">
       <div>Pokemon Tracker App</div>
-      <div></div>
       <div>
         {pokeapi.map((poke, idx) => {
           return <PokemonRow pokemon={poke} key={idx} />;
