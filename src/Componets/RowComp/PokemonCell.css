@@ -12,8 +12,15 @@ div .cell {
   transition: 0.1s;
 }
 
-.cell:hover {
+#zoom:hover {
   transition-timing-function: ease-out;
   transition: 0.1s;
   scale: 1.05;
+}
+
+.subHeader {
+  min-width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: green;
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import PokemonRow from "./Componets/RowComp/PokemonRow.jsx";
+import PokemonCell from "./Componets/RowComp/PokemonCell.jsx";
 
 function App() {
   const [pokeapi, setPokeapi] = useState(new Array(undefined));
@@ -28,7 +28,7 @@ function App() {
       <div>Pokemon Tracker App</div>
       <div className="PokeContainer">
         {pokeapi.map((poke, idx) => {
-          return <PokemonRow pokemon={poke} key={idx} />;
+          return <PokemonCell pokemon={poke} key={idx} />;
         })}
       </div>
     </div>
