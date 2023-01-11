@@ -1,27 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
+import PokemonRow from "./Componets/PokemonRow";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [pokeapi, setPokeapi] = useState(new Array());
+
+  useEffect(() => {
+    GetPoke();
+  }, []);
+
+  const GetPoke = async () => {
+    const pokemon = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=154");
+    const pokeBody = await pokemon.json();
+    setPokeapi(pokeBody.results);
+  };
 
   return (
     <div className="App">
-      <div>Making a site for when I play Pokemon games</div>
-      <div>Testing github actions, take 75</div>
-      <div>Different here</div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div>Pokemon Tracker App</div>
+      <div>
+        {pokeapi.map((poke, idx) => {
+          return <PokemonRow pokemon={poke} key={idx} />;
+        })}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
   );
 }
