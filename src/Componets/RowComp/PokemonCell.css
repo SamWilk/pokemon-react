@@ -5,7 +5,7 @@ div .cell {
   justify-content: center;
   min-height: 10rem;
   min-width: 10rem;
-  background-color: blue;
+  background-color: white;
   margin: 1rem;
   border-radius: 18px;
   transition-timing-function: ease-in;
@@ -16,11 +16,18 @@ div .cell {
   transition-timing-function: ease-out;
   transition: 0.1s;
   scale: 1.05;
+  background-color: white;
 }
 
 .subHeader {
   min-width: 100%;
   display: flex;
   justify-content: space-evenly;
-  background-color: green;
+}
+
+.typeRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 100%;
 }

@@ -8,7 +8,6 @@ function App() {
 
   useEffect(() => {
     FindPok();
-    console.log(pokeapi);
   }, []);
 
   const FindPok = async () => {
