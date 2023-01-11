@@ -3,17 +3,20 @@ import "./App.css";
 import PokemonRow from "./Componets/RowComp/PokemonRow.jsx";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [pokeapi, setPokeapi] = useState(new Array());
+  const [pokeapi, setPokeapi] = useState(new Array(undefined));
 
   useEffect(() => {
-    GetPoke();
+    FindPok();
   }, []);
 
-  const GetPoke = async () => {
-    const pokemon = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=154");
-    const pokeBody = await pokemon.json();
-    setPokeapi(pokeBody.results);
+  const FindPok = async () => {
+    let temp = [];
+    for (let i = 1; i < 100; i++) {
+      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
+      const body = await res.json();
+      temp.push(body);
+    }
+    setPokeapi(temp);
   };
 
   return (

@@ -1,0 +1,8 @@
+div .cell {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
+
+  background-color: blue;
+}
