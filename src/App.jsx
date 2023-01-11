@@ -3,12 +3,28 @@ import "./App.css";
 import PokemonCell from "./Componets/RowComp/PokemonCell.jsx";
 
 function App() {
-  const [pokeapi, setPokeapi] = useState(new Array(undefined));
-  const [loadingFlag, setLoadingFlag] = useState(true);
+  const [pokeapi, setPokeapi] = useState(new Array(1));
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     FindPok();
+    console.log("Before");
+    console.log(pokeapi);
   }, []);
+
+  useEffect(() => {
+    console.log(
+      pokeapi.filter((e) => {
+        try {
+          if (e != undefined) {
+            e.species.name.includes(search);
+          }
+        } catch (error) {
+          console.error("Error happened:", error);
+        }
+      })
+    );
+  }, [search]);
 
   const FindPok = async () => {
     let temp = [];
@@ -25,10 +41,22 @@ function App() {
   return (
     <div className="App">
       <div>Pokemon Tracker App</div>
+      <input value={search} onChange={(e) => setSearch(e.target.value)} />
       <div className="PokeContainer">
-        {pokeapi.map((poke, idx) => {
-          return <PokemonCell pokemon={poke} key={idx} />;
-        })}
+        {pokeapi
+          .filter((e) => {
+            try {
+              if (e != undefined) {
+                e.species.name.includes(search);
+              }
+            } catch (error) {
+              console.error("Error happened:", error);
+            }
+          })
+          .map((poke, idx) => {
+            console.log(poke.species.name);
+            return <PokemonCell pokemon={poke} key={idx} />;
+          })}
       </div>
     </div>
   );

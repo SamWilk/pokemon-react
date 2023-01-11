@@ -33,7 +33,7 @@ const PokemonCell = ({ pokemon }) => {
             <div>{pokemon.name}</div>
           </div>
           <div>
-            <img id="zoom" src={pokemon.sprites.front_default} />
+            <img src={pokemon.sprites.front_default} />
           </div>
           <div className="typeRow">
             {type.map((typ, idx) => {
