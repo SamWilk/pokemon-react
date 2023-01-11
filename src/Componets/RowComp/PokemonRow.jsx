@@ -1,3 +1,5 @@
+import "./PokemonRow.css";
+
 const PokemonRow = ({ pokemon }) => {
   return <div>{pokemon.name}</div>;
 };

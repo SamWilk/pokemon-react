@@ -1,5 +1,11 @@
 #!/usr/bin/env sh
 
+# abort on errors
+set -e
+
+# change dir
+cd ../
+
 # stage
 git add .
 

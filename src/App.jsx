@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import PokemonRow from "./Componets/PokemonRow";
+import PokemonRow from "./Componets/RowComp/PokemonRow.jsx";
 
 function App() {
   const [count, setCount] = useState(0);
