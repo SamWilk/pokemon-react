@@ -5,7 +5,6 @@ const PokemonCell = ({ pokemon }) => {
     console.log("Nothing to see here!");
     return <div />;
   }
-
   return (
     <div id="zoom" className="cell">
       <div className="subHeader">
