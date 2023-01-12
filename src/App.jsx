@@ -30,7 +30,7 @@ function App() {
 
   return (
     <div className="App">
-      <div>Pokemon Tracker App</div>
+      <div>Pokemon Tracker App Test here</div>
       <input value={search} onChange={(e) => setSearch(e.target.value)} />
       <div className="PokeContainer">
         {pokeapi
