@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import PokemonCell from "./Componets/RowComp/PokemonCell.jsx";
+import PokemonCell from "./Components/RowComp/PokemonCell.jsx";
 
 /*
  * Construct a pokemon object to pass around in the application rather than work with requests
