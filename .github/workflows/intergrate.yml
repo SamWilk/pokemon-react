@@ -1,4 +1,4 @@
-name: Continuous Integration and Deployment
+name: Continuous Integration
 
 on:
   pull_request:
@@ -7,43 +7,23 @@ on:
   push:
     branches:
       - "main"
-      - "development-branch"
 
 jobs:
-  build-and-deploy:
+  confirm-build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Configure Node
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v1
         with:
-          node-version: 14.x
-      - name: Install
-        run: |
-          npm ci
-          npm run build
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
+          node-version: 14
+      - run: npm ci
+      - run: npm run build
+  test:
+    needs: confirm-build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v1
         with:
-          folder: dist
-          branch: gh-pages
-
-  # confirm-build:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: actions/setup-node@v1
-  #       with:
-  #         node-version: 14
-  #     - run: npm ci
-  #     - run: npm run build
-  # test:
-  #   needs: confirm-build
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: actions/setup-node@v1
-  #       with:
-  #         node-version: 14
-  #     - run: npm ci
+          node-version: 14
+      - run: npm ci
