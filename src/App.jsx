@@ -2,6 +2,12 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import PokemonCell from "./Componets/RowComp/PokemonCell.jsx";
 
+/*
+ * Construct a pokemon object to pass around in the application rather than work with requests
+ * all the time.
+ * Call once load times are down and less api calls
+ */
+
 function App() {
   const [pokeapi, setPokeapi] = useState(new Array());
   const [search, setSearch] = useState("");
@@ -30,7 +36,7 @@ function App() {
 
   return (
     <div className="App">
-      <div>Pokemon Tracker App</div>
+      <div>Pokemon Tracker App Test here</div>
       <input value={search} onChange={(e) => setSearch(e.target.value)} />
       <div className="PokeContainer">
         {pokeapi
