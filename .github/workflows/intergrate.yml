@@ -12,25 +12,25 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
-        - name: Configure Node
-          - uses: actions/setup-node@v1
-            with:
-              node-version: 14.x
-
-        - name: Install
-          run: |
-            npm ci
-            npm run build
-
-        - name: Deploy
-          uses: JamesIves/github-pages-deploy-action@v4
+      - name: Configure Node
+        - uses: actions/setup-node@v1
           with:
-            folder: dist
-            branch: gh-pages
+            node-version: 14.x
+
+      - name: Install
+        run: |
+          npm ci
+          npm run build
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
+          branch: gh-pages
         
   # confirm-build:
   #   runs-on: ubuntu-latest
