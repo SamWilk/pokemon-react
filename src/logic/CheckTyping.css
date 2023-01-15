@@ -1,0 +1,132 @@
+.typeRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 100%;
+}
+
+.fire {
+  background-color: #ea7a3c;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+
+.flying {
+  background-color: #a98ff3;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+
+.electric {
+  background-color: #e5c531;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+
+.normal {
+  background-color: #a8a77a;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+
+.fighting {
+  background-color: #c22e28;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+
+.rock {
+  background-color: #b6a136;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+
+.poison {
+  background-color: #a33ea1;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+
+.grass {
+  background-color: #e5c531;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+
+.ground {
+  background-color: #e5c531;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+
+.dragon {
+  background-color: #6f35fc;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+
+.water {
+  background-color: #6390f0;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+
+.psychic {
+  background-color: #f95587;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+
+.bug {
+  background-color: #a6b91a;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+
+.fairy {
+  background-color: #d685ad;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+
+.steel {
+  background-color: #b7b7ce;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+
+.ice {
+  background-color: #96d9d6;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+
+.ghost {
+  background-color: #735797;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+
+.dark {
+  background-color: #705746;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 12px;
+}

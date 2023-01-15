@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - "main"
+      - "development-branch"
 
 jobs:
   confirm-build:
@@ -17,7 +18,7 @@ jobs:
         with:
           node-version: 14
       - run: |
-          npm ci
+          npm i
           npm run build
   test:
     needs: confirm-build
@@ -28,4 +29,4 @@ jobs:
         with:
           node-version: 14
       - run: |
-          npm ci
+          npm i

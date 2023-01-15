@@ -7,11 +7,12 @@
   "scripts": {
     "predeploy": "vite build",
     "deploy": "gh-pages -d dist",
-    "dev": "vite",
+    "dev": "npm i && vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "esbuild": "^0.17.0",
     "gh-pages": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
