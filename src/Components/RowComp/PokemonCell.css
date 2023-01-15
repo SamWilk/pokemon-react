@@ -24,10 +24,3 @@ div .cell {
   display: flex;
   justify-content: space-evenly;
 }
-
-.typeRow {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  max-width: 100%;
-}

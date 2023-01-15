@@ -1,27 +1,8 @@
 import { useEffect, useState } from "react";
+import { CheckTyping } from "../../logic/CheckTyping.jsx";
 import "./PokemonCell.css";
 
 const PokemonCell = ({ pokemon }) => {
-  const [type, setType] = useState([]);
-
-  useEffect(() => {
-    FindType();
-  }, []);
-
-  const FindType = async () => {
-    let tempArray = [];
-    if (pokemon != undefined) {
-      while (pokemon.types.length != 0) {
-        const typeBefore = pokemon.types.pop();
-        const url = typeBefore.type.url;
-        const response = await fetch(url);
-        const body = await response.json();
-        tempArray.push(body.name);
-      }
-      setType(tempArray);
-    }
-  };
-
   return (
     <div id="zoom" className="cell">
       {pokemon == undefined ? (
@@ -35,11 +16,7 @@ const PokemonCell = ({ pokemon }) => {
           <div>
             <img src={pokemon.sprites.front_default} />
           </div>
-          <div className="typeRow">
-            {type.map((typ, idx) => {
-              return <div key={idx}>{typ}</div>;
-            })}
-          </div>
+          <CheckTyping pokemon={pokemon} />
         </span>
       )}
     </div>
