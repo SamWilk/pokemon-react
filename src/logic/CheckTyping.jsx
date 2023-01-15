@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { PokemonType } from "../Components/PokemonType";
+import { PokemonType } from "../Components/PokemonType/PokemonType";
 import "./CheckTyping.css";
 
 /**

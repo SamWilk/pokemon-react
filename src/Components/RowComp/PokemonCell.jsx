@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { CheckTyping } from "../../logic/CheckTyping.jsx";
 import "./PokemonCell.css";
 
