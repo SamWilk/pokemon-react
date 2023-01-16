@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import "./App.css";
-import PokemonCell from "./Components/RowComp/PokemonCell.jsx";
+import { PokemonList } from "./Components/PokemonList/PokemonList";
+import { RadioGroup, RadioButton } from "react-radio-buttons";
 
 /*
  * Construct a pokemon object to pass around in the application rather than work with requests
@@ -10,17 +11,11 @@ import PokemonCell from "./Components/RowComp/PokemonCell.jsx";
 
 function App() {
   const [pokeapi, setPokeapi] = useState(new Array());
-  const [search, setSearch] = useState("");
+  const [gen, setGen] = useState("");
 
   useEffect(() => {
-    console.log("Before");
-    console.log(pokeapi);
     FindPok();
   }, []);
-
-  useEffect(() => {
-    console.log();
-  }, [search]);
 
   const FindPok = async () => {
     let temp = [];
@@ -36,16 +31,14 @@ function App() {
 
   return (
     <div className="App">
-      <div>Pokemon Tracker App Test here</div>
-      <input value={search} onChange={(e) => setSearch(e.target.value)} />
+      <div>
+        Poke Tracker
+        <RadioGroup>
+          <RadioButton value="Gen-1">Gen 1</RadioButton>
+        </RadioGroup>
+      </div>
       <div className="PokeContainer">
-        {pokeapi
-          .filter((element) =>
-            element.species.name.toLowerCase().includes(search.toLowerCase())
-          )
-          .map((poke, idx) => {
-            return <PokemonCell pokemon={poke} key={idx} />;
-          })}
+        <PokemonList List={pokeapi} />
       </div>
     </div>
   );
