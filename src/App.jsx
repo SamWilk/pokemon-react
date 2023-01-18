@@ -2,6 +2,7 @@ import { useEffect, useState, memo } from "react";
 import "./App.css";
 import { PokemonList } from "./Components/PokemonList/PokemonList";
 import { RadioGroup, Radio } from "react-radio-group";
+import { GenEnum } from "./Objects/GenEnum";
 /*
  * Construct a pokemon object to pass around in the application rather than work with requests
  * all the time.
@@ -10,18 +11,39 @@ import { RadioGroup, Radio } from "react-radio-group";
 
 function App() {
   const [pokeapi, setPokeapi] = useState(new Array());
-  const [gen, setGen] = useState("");
+  const [gen, setGen] = useState();
   const [genArray, setGenArray] = useState(new Array());
+  const [urlSearchParams, seturlSearchParams] = useState({
+    offset: 0,
+    limit: 151,
+  });
 
   useEffect(() => {
     FindPok();
     PopulateArray();
   }, []);
 
+  useEffect(() => {
+    FormUrl();
+  }, [gen]);
+
+  //https://pokeapi.co/api/v2/generation/1/
+
+  const FormUrl = () => {
+    if (gen != undefined) {
+      seturlSearchParams(GenEnum[gen]);
+    }
+  };
+
   const FindPok = async () => {
     let temp = [];
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=151`);
+    const res = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/?offset=${
+        urlSearchParams.offset === undefined ? 0 : urlSearchParams.offset
+      }&limit=${urlSearchParams.limit}`
+    );
     const body = await res.json();
+    console.log(body);
     for (let i = 1; i < body.results.length + 1; i++) {
       const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
       const body = await res.json();
@@ -48,10 +70,11 @@ function App() {
           onChange={(e) => setGen(e)}
         >
           {genArray.map((value, idx) => {
+            const genString = "Gen" + value;
             return (
               <span key={idx} className="radioButton">
-                <Radio value="gen" />
-                Gen {idx}
+                <Radio value={genString} />
+                Gen {value}
               </span>
             );
           })}
