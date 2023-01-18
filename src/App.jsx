@@ -25,6 +25,7 @@ function App() {
 
   useEffect(() => {
     FormUrl();
+    FindPok();
   }, [gen]);
 
   //https://pokeapi.co/api/v2/generation/1/
@@ -45,9 +46,11 @@ function App() {
     const body = await res.json();
     console.log(body);
     for (let i = 1; i < body.results.length + 1; i++) {
-      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
-      const body = await res.json();
-      temp.push(body);
+      if (body.results[i] != undefined) {
+        const res = await fetch(body.results[i].url);
+        const body2 = await res.json();
+        temp.push(body2);
+      }
     }
     setPokeapi(temp);
   };
@@ -70,7 +73,7 @@ function App() {
           onChange={(e) => setGen(e)}
         >
           {genArray.map((value, idx) => {
-            const genString = "Gen" + value;
+            let genString = "Gen" + value;
             return (
               <span key={idx} className="radioButton">
                 <Radio value={genString} />
