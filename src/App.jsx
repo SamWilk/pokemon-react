@@ -66,7 +66,7 @@ function App() {
   return (
     <div className="App">
       <div className="sideBar">
-        Poke Tracker
+        Poke Tracker test here
         <RadioGroup
           className="radioContainer"
           selectedValue={gen}
