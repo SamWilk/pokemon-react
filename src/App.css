@@ -27,4 +27,31 @@ th {
   background-color: gray;
   min-height: 105vh;
   overflow-x: hidden;
+  display: flex;
+
+  width: 100%;
+  height: 100%;
+}
+
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  max-width: 15%;
+  width: 15%;
+}
+
+.radioContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  max-width: 100%;
+}
+
+.radioButton {
+  font-size: medium;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  max-width: 100%;
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "../logic/CheckTyping.css";
+import "../../logic/CheckTyping.css";
 
 export const PokemonType = ({ PokemonType }) => {
   const [colorStyle, setColorStyle] = useState("");

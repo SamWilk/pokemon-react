@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { PokemonType } from "../Components/PokemonType";
+import { PokemonType } from "../Components/PokemonType/PokemonType";
 import "./CheckTyping.css";
 
 /**
@@ -9,7 +9,6 @@ import "./CheckTyping.css";
  */
 export const CheckTyping = ({ pokemon }) => {
   const [type, setType] = useState([]);
-  const [colorStyle, setColorStyle] = useState("");
 
   useEffect(() => {
     FindType();
@@ -21,7 +20,6 @@ export const CheckTyping = ({ pokemon }) => {
       while (pokemon.types.length != 0) {
         const typeBefore = pokemon.types.pop();
         tempArray.push(typeBefore.type.name);
-        SetColor(typeBefore.type.name);
       }
       setType(tempArray);
     }
@@ -32,21 +30,6 @@ export const CheckTyping = ({ pokemon }) => {
       const body = await response.json();
       tempArray.push(body.name);
       setType(tempArray);
-      SetColor(body.name);
-    }
-  };
-
-  const SetColor = (typing) => {
-    const lowerType = typing.toLowerCase();
-    switch (lowerType) {
-      case "fire":
-        setColorStyle("fire");
-        break;
-      case "flying":
-        setColorStyle("flying");
-        break;
-      default:
-        break;
     }
   };
 

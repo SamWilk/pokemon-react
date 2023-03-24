@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: 14
       - run: |
-          npm i
+          npm ci
           npm run build
   test:
     needs: confirm-build
@@ -29,4 +29,4 @@ jobs:
         with:
           node-version: 14
       - run: |
-          npm i
+          npm ci
