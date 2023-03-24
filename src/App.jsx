@@ -11,7 +11,7 @@ import { GenEnum } from "./Objects/GenEnum";
 
 function App() {
   const [pokeapi, setPokeapi] = useState(new Array());
-  const [gen, setGen] = useState();
+  const [gen, setGen] = useState("Gen1");
   const [genArray, setGenArray] = useState(new Array());
   const [urlSearchParams, seturlSearchParams] = useState({
     offset: 0,
@@ -28,20 +28,18 @@ function App() {
     FindPok();
   }, [gen]);
 
-  //https://pokeapi.co/api/v2/generation/1/
-
   const FormUrl = () => {
     if (gen != undefined) {
       seturlSearchParams(GenEnum[gen]);
     }
   };
 
+  // ${urlSearchParams.limit}
+
   const FindPok = async () => {
     let temp = [];
     const res = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/?offset=${
-        urlSearchParams.offset === undefined ? 0 : urlSearchParams.offset
-      }&limit=${urlSearchParams.limit}`
+      `https://pokeapi.co/api/v2/pokemon/?offset=${urlSearchParams.offset}&limit=10`
     );
     const body = await res.json();
     console.log(body);
