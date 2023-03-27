@@ -13,6 +13,8 @@ dist-ssr
 *.local
 data
 docker-compose.yaml
+.env
+.env.*
 
 # Editor directories and files
 .vscode/*
