@@ -15,6 +15,7 @@ data
 docker-compose.yaml
 .env
 .env.*
+pokemon-psql
 
 # Editor directories and files
 .vscode/*
