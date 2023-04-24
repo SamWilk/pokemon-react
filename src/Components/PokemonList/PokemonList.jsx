@@ -10,7 +10,7 @@ export const PokemonList = ({ List }) => {
       <input value={search} onChange={(e) => setSearch(e.target.value)} />
       <div className="container">
         {List.filter((element) =>
-          element.species.name.toLowerCase().includes(search.toLowerCase())
+          element.name.toLowerCase().includes(search.toLowerCase())
         ).map((poke, idx) => {
           return <PokemonCell pokemon={poke} key={idx} />;
         })}
