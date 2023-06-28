@@ -70,5 +70,5 @@ export const PokemonType = ({ PokemonType }) => {
     }
   };
 
-  return <div className={colorStyle}>{PokemonType}</div>;
+  return <div id="typeName" className={colorStyle}>{PokemonType}</div>;
 };

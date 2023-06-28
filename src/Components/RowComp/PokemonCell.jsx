@@ -2,9 +2,10 @@ import { CheckTyping } from "../../logic/CheckTyping.jsx";
 import "./PokemonCell.css";
 
 const PokemonCell = ({ pokemon }) => {
-  console.log(pokemon);
   return (
-    <div id="zoom" className="cell">
+    <div id="zoom" className="cell" onClick={() => {
+      console.log(pokemon)
+    }}>
       {pokemon == undefined ? (
         <div />
       ) : (
