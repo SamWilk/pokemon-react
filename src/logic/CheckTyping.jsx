@@ -8,35 +8,10 @@ import "./CheckTyping.css";
  * @returns
  */
 export const CheckTyping = ({ pokemon }) => {
-  const [type, setType] = useState([]);
-
-  useEffect(() => {
-    FindType();
-  }, []);
-
-  const FindType = async () => {
-    let tempArray = [];
-    if (pokemon != undefined && pokemon.types.length > 1) {
-      while (pokemon.types.length != 0) {
-        const typeBefore = pokemon.types.pop();
-        tempArray.push(typeBefore.type.name);
-      }
-      setType(tempArray);
-    }
-    if (pokemon != undefined && pokemon.types.length === 1) {
-      const typeBefore = pokemon.types.pop();
-      const url = typeBefore.type.url;
-      const response = await fetch(url);
-      const body = await response.json();
-      tempArray.push(body.name);
-      setType(tempArray);
-    }
-  };
-
   return (
     <div className="typeRow">
-      {type.map((types, idx) => {
-        return <PokemonType PokemonType={types} key={idx} />;
+      {pokemon.types.map((type, idx) => {
+        return <PokemonType PokemonType={type} key={idx} />;
       })}
     </div>
   );

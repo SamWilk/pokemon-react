@@ -6,11 +6,11 @@ export const PokemonList = ({ List }) => {
   const [search, setSearch] = useState("");
 
   return (
-    <div>
-      <input value={search} onChange={(e) => setSearch(e.target.value)} />
+    <div className="ListContainer">
+        <input className="SearchBar" placeholder="Find your pokemon" value={search} onChange={(e) => setSearch(e.target.value)} />
       <div className="container">
         {List.filter((element) =>
-          element.species.name.toLowerCase().includes(search.toLowerCase())
+          element.name.toLowerCase().includes(search.toLowerCase())
         ).map((poke, idx) => {
           return <PokemonCell pokemon={poke} key={idx} />;
         })}

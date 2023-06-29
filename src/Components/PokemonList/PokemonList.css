@@ -2,13 +2,27 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   margin: 1rem;
 
   width: 100%;
-  height: 100%;
+  height: 92vh;
   overflow-y: scroll;
   padding-right: 17px; /* Increase/decrease this value for cross-browser compatibility */
   box-sizing: content-box; /* So the width will be 100% + 17px */
+}
+
+.ListContainer{
+  min-width: 90vw;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.SearchBar{
+  padding: .5rem;
+  outline: none;
+  border-radius: 12px;
+  border: 0px;
+  background-color: #94B0B3;
 }

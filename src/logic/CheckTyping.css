@@ -1,8 +1,13 @@
 .typeRow {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   max-width: 100%;
+}
+
+#typeName{
+  margin-left: .25rem;
+  margin-right: .25rem;
 }
 
 .fire {

@@ -1,0 +1,32 @@
+.ListHolder{
+    display: flex;
+    flex-direction: row;
+    min-height: 90vh;
+}
+
+.SideColumn{
+    min-width: 10vw;
+    min-height: 100vh;
+}
+
+.GenContainer{
+    display: flex;
+    flex-direction: column;
+    min-height: 30vh;
+    justify-content: space-evenly;
+    align-content: center;
+}
+.GenButton{
+    border: 0px;
+    background-color: #324B4D;
+    padding: .25rem;
+    border-radius: 12px;
+    color: white;
+    transition: .3s ease;
+}
+
+.GenButton:hover{
+    transform: scale(1.04);
+    background-color: #94B0B3;
+    color: black;
+}

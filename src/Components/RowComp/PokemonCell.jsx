@@ -3,7 +3,9 @@ import "./PokemonCell.css";
 
 const PokemonCell = ({ pokemon }) => {
   return (
-    <div id="zoom" className="cell">
+    <div id="zoom" className="cell" onClick={() => {
+      console.log(pokemon)
+    }}>
       {pokemon == undefined ? (
         <div />
       ) : (
@@ -13,7 +15,7 @@ const PokemonCell = ({ pokemon }) => {
             <div>{pokemon.name}</div>
           </div>
           <div>
-            <img src={pokemon.sprites.front_default} />
+            <img src={pokemon.sprite} />
           </div>
           <CheckTyping pokemon={pokemon} />
         </span>

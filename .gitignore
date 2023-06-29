@@ -11,6 +11,11 @@ node_modules
 dist
 dist-ssr
 *.local
+data
+docker-compose.yaml
+.env
+.env.*
+pokemon-psql
 
 # Editor directories and files
 .vscode/*
