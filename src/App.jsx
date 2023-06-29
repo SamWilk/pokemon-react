@@ -1,3 +1,4 @@
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Pokemon from "./Components/Pokemon/Pokemon";
 
@@ -9,8 +10,8 @@ import Pokemon from "./Components/Pokemon/Pokemon";
 
 function App() {
   return (
-    <div className="App">
-      <div className="PokeContainer">
+    <div className='App'>
+      <div className='PokeContainer'>
         <Pokemon />
       </div>
     </div>
