@@ -6,11 +6,11 @@ import { RadioGroup, FormControlLabel } from "react-radio-group";
 const Pokemon = () => {
   const [pokemonList, SetPokemonList] = useState(new Array());
   const [pokemonGen, SetPokemonGen] = useState(0);
-  let genArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  let genArray = [1, 2, 3, 4, 5, 6, 7];
 
   useEffect(() => {
     GetPokemon();
-  }, []);
+  }, [pokemonGen]);
 
   const GetPokemon = async () => {
     if (pokemonGen == 0) {
@@ -18,11 +18,9 @@ const Pokemon = () => {
       const pokemonList = await response.json();
       SetPokemonList(pokemonList);
     } else {
-      const response = await fetch("http://localhost:3000/pokemon/gen", {
-        method: "get",
-        headers: { "Content-Type": "application/json" },
-        body: { generation: pokemonGen },
-      });
+      const response = await fetch(
+        `http://localhost:3000/pokemon/gen/${pokemonGen}`
+      );
       const pokemonList = await response.json();
       SetPokemonList(pokemonList);
     }
@@ -39,6 +37,14 @@ const Pokemon = () => {
         {/* <GenFilter /> */}
         <h4>Choose the Generation</h4>
         <div className='GenContainer'>
+          <input
+            className='GenButton'
+            type='button'
+            value={`All Gen`}
+            onClick={async () => {
+              await GenFilter(0);
+            }}
+          />
           {genArray.map((gen) => {
             return (
               <input

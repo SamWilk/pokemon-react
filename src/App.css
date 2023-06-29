@@ -6,8 +6,9 @@
   align-items: flex-start;
   justify-content: center;
   margin: 1rem;
-  width: 100vw;
+  min-width: 90vw;
   min-height: 90vh;
+  margin-left: 2vw;
 }
 
 table {
