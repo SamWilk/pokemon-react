@@ -20,7 +20,7 @@ div .cell {
 }
 
 .subHeader {
-  min-width: 100%;
+  min-width: 10rem;
   display: flex;
   justify-content: space-evenly;
   margin-top: .01rem;
