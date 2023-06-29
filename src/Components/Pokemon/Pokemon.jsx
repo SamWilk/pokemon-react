@@ -6,25 +6,35 @@ import { RadioGroup, FormControlLabel } from "react-radio-group";
 const Pokemon = () => {
   const [pokemonList, SetPokemonList] = useState(new Array());
   const [pokemonGen, SetPokemonGen] = useState(0);
+  const [selectedPokemon, SetSelectedPokemon] = useState(new Array());
   let genArray = [1, 2, 3, 4, 5, 6, 7];
 
   useEffect(() => {
     GetPokemon();
+    // Make call to get selected pokemon
   }, [pokemonGen]);
 
   const GetPokemon = async () => {
     if (pokemonGen == 0) {
       const response = await fetch("http://localhost:3000/pokemon");
       const pokemonList = await response.json();
+      pokemonList.map((e) => {
+        e["Selected"] = false;
+      });
       SetPokemonList(pokemonList);
     } else {
       const response = await fetch(
         `http://localhost:3000/pokemon/gen/${pokemonGen}`
       );
       const pokemonList = await response.json();
+      pokemonList.map((e) => {
+        e["Selected"] = false;
+      });
       SetPokemonList(pokemonList);
     }
   };
+
+  // Make call to get selected pokemon
 
   const GenFilter = async (gen) => {
     SetPokemonGen(gen);
@@ -62,7 +72,7 @@ const Pokemon = () => {
       </div>
       <div className='ListHolder'>
         {pokemonList.length >= 1 ? (
-          <PokemonList List={pokemonList} />
+          <PokemonList List={pokemonList} SelectedList={selectedPokemon} />
         ) : (
           <div>Bear with me now...</div>
         )}
