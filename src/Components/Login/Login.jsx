@@ -1,5 +1,12 @@
+import "./Login.css";
+import LoginForm from "./LoginComponent/LoginForm";
+
 const Login = () => {
-  return <div>Login Screen</div>;
+  return (
+    <div className='App'>
+      <LoginForm />
+    </div>
+  );
 };
 
 export default Login;
