@@ -1,34 +1,63 @@
 import { useEffect, useState } from "react";
 import { PokemonList } from "../PokemonList/PokemonList";
 import "./Pokemon.css";
-import { RadioGroup, FormControlLabel } from "react-radio-group";
+import { getMyAPIUrl } from "../../configURL";
+import { useCookies } from "react-cookie";
 
 const Pokemon = () => {
   const [pokemonList, SetPokemonList] = useState(new Array());
   const [pokemonGen, SetPokemonGen] = useState(0);
   const [selectedPokemon, SetSelectedPokemon] = useState(new Array());
+  const [cookies] = useCookies(["Bearer"]);
+
   let genArray = [1, 2, 3, 4, 5, 6, 7];
+  const APIUrl = getMyAPIUrl();
 
   useEffect(() => {
     GetPokemon();
-    // Make call to get selected pokemon
+    console.log(pokemonList);
   }, [pokemonGen]);
 
   const GetPokemon = async () => {
     if (pokemonGen == 0) {
-      const response = await fetch("http://localhost:3000/pokemon");
-      const pokemonList = await response.json();
+      // Intial Get
+      const defaultResponse = await fetch(`${APIUrl}/pokemon`);
+      const pokemonList = await defaultResponse.json();
+
+      //User Specific Get
+      const userResponse = await fetch(`${APIUrl}/users/pokemon`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${cookies.Bearer}`,
+        },
+      });
+      const userPokemonList = await userResponse.json();
       pokemonList.map((e) => {
         e["Selected"] = false;
+        userPokemonList.map((p) => {
+          if (p.pokemonid == e.id) e["Selected"] = true;
+        });
       });
       SetPokemonList(pokemonList);
     } else {
-      const response = await fetch(
-        `http://localhost:3000/pokemon/gen/${pokemonGen}`
-      );
+      const response = await fetch(`${APIUrl}/pokemon/gen/${pokemonGen}`);
       const pokemonList = await response.json();
+
+      //User Specific Get
+      const userResponse = await fetch(`${APIUrl}/users/pokemon`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${cookies.Bearer}`,
+        },
+      });
+      const userPokemonList = await userResponse.json();
       pokemonList.map((e) => {
         e["Selected"] = false;
+        userPokemonList.map((p) => {
+          if (p.pokemonid == e.id) e["Selected"] = true;
+        });
       });
       SetPokemonList(pokemonList);
     }

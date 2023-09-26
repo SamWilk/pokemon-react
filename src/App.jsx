@@ -1,14 +1,20 @@
-import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
 import "./App.css";
 import Pokemon from "./Components/Pokemon/Pokemon";
-
-/*
- * Construct a pokemon object to pass around in the application rather than work with requests
- * all the time.
- * Call once load times are down and less api calls
- */
+import { getMyUrl } from "./configURL";
 
 function App() {
+  useEffect(() => {
+    const url = getMyUrl();
+    const currentURL = window.location.href;
+
+    const urlParams = new URLSearchParams(currentURL);
+
+    if (!urlParams.toString().includes("userID=")) {
+      window.location.replace(`${url}/pokemon-react/login`);
+    }
+  }, []);
+
   return (
     <div className='App'>
       <div className='PokeContainer'>
