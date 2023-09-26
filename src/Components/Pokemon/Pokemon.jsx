@@ -1,31 +1,33 @@
 import { useEffect, useState } from "react";
 import { PokemonList } from "../PokemonList/PokemonList";
 import "./Pokemon.css";
-import { RadioGroup, FormControlLabel } from "react-radio-group";
+import { getMyAPIUrl } from "../../configURL";
 
 const Pokemon = () => {
   const [pokemonList, SetPokemonList] = useState(new Array());
   const [pokemonGen, SetPokemonGen] = useState(0);
   const [selectedPokemon, SetSelectedPokemon] = useState(new Array());
   let genArray = [1, 2, 3, 4, 5, 6, 7];
+  const APIUrl = getMyAPIUrl();
 
   useEffect(() => {
     GetPokemon();
     // Make call to get selected pokemon
+    GetSelectedPokemon();
   }, [pokemonGen]);
+
+  const GetSelectedPokemon = () => {};
 
   const GetPokemon = async () => {
     if (pokemonGen == 0) {
-      const response = await fetch("http://localhost:3000/pokemon");
+      const response = await fetch(`${APIUrl}/pokemon`);
       const pokemonList = await response.json();
       pokemonList.map((e) => {
         e["Selected"] = false;
       });
       SetPokemonList(pokemonList);
     } else {
-      const response = await fetch(
-        `http://localhost:3000/pokemon/gen/${pokemonGen}`
-      );
+      const response = await fetch(`${APIUrl}/pokemon/gen/${pokemonGen}`);
       const pokemonList = await response.json();
       pokemonList.map((e) => {
         e["Selected"] = false;

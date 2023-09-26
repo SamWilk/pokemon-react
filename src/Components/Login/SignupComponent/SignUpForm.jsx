@@ -1,9 +1,14 @@
 import { useState } from "react";
 import "./SignUpForm.css";
 import { Form, Field, Formik } from "formik";
+import { useDispatch } from "react-redux";
+import { login } from "../../Auth/AuthSlice";
+import { getMyAPIUrl } from "../../../configURL";
 
 const SignUpForm = () => {
   const [invalidLogin, setInvalidLogin] = useState();
+  const dispatch = useDispatch();
+  const APIUrl = getMyAPIUrl();
 
   const validate = (values) => {
     let errors = {};
@@ -22,7 +27,7 @@ const SignUpForm = () => {
   const onSubmit = async (values) => {
     console.log(values);
     try {
-      const response = await fetch("http://localhost:3000/users", {
+      const response = await fetch(`${APIUrl}/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
@@ -31,7 +36,13 @@ const SignUpForm = () => {
         setInvalidLogin("User already exists with username or email");
         throw new Error("User already exists with username or email");
       } else {
-        window.location.replace("http://localhost:5173/pokemon-react/");
+        const body = await response.json();
+        const user = {
+          name: body.name,
+          userID: body.userID,
+        };
+        dispatch(login(user));
+        window.location.replace(`${url}/pokemon-react/?userID=${user.userID}`);
       }
     } catch (error) {
       console.error(error);
@@ -51,7 +62,7 @@ const SignUpForm = () => {
       >
         {({ isSubmitting }) => (
           <Form>
-            <label htmlFor='name'>First Name</label>
+            <label htmlFor='name'>User Name</label>
             <Field name='name' placeholder='Joe' />
 
             <label htmlFor='email'>Email</label>

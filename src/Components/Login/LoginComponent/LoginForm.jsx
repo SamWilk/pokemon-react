@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./LoginForm.css";
 import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
+import { login } from "../../Auth/AuthSlice";
+import { getMyUrl } from "../../../configURL";
+import { setCookies } from "../../Cookies/cookies";
 
 const LoginForm = () => {
   const [invalidLogin, setInvalidLogin] = useState();
+  const dispatch = useDispatch();
+  const url = getMyUrl();
 
   const initialValues = {
     name: "",
@@ -23,7 +29,15 @@ const LoginForm = () => {
         setInvalidLogin("User Name or Password not correct");
         throw new Error("User was not found");
       } else {
-        window.location.replace("http://localhost:5173/pokemon-react/");
+        const body = await response.json();
+        const user = {
+          name: body.name,
+          userID: body.userID,
+        };
+        dispatch(login(user));
+        //Need to set cookies here
+        setCookies(body.accessToken);
+        window.location.replace(`${url}/pokemon-react/?userID=${user.userID}`);
       }
     } catch (error) {
       console.error(error);
