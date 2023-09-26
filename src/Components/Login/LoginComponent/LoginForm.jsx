@@ -4,12 +4,13 @@ import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { login } from "../../Auth/AuthSlice";
 import { getMyUrl } from "../../../configURL";
-import { setCookies } from "../../Cookies/cookies";
+import { useCookies } from "react-cookie";
 
 const LoginForm = () => {
   const [invalidLogin, setInvalidLogin] = useState();
   const dispatch = useDispatch();
   const url = getMyUrl();
+  const [, setCookie] = useCookies(["Bearer"]);
 
   const initialValues = {
     name: "",
@@ -35,8 +36,7 @@ const LoginForm = () => {
           userID: body.userID,
         };
         dispatch(login(user));
-        //Need to set cookies here
-        setCookies(body.accessToken);
+        setCookie("Bearer", body.accessToken, { path: "/" });
         window.location.replace(`${url}/pokemon-react/?userID=${user.userID}`);
       }
     } catch (error) {

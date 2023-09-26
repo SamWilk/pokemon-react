@@ -42,6 +42,7 @@ const SignUpForm = () => {
           userID: body.userID,
         };
         dispatch(login(user));
+        setCookie("Bearer", body.accessToken, { path: "/" });
         window.location.replace(`${url}/pokemon-react/?userID=${user.userID}`);
       }
     } catch (error) {
