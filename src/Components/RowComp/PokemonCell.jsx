@@ -25,7 +25,6 @@ const PokemonCell = ({ pokemon }) => {
         },
         body: JSON.stringify({ pokemonid: pokemon.id }),
       });
-      console.log(response);
       if (response.status == "202") {
         pokemon.Selected = false;
       } else {

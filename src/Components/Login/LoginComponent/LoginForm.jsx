@@ -5,12 +5,14 @@ import { useDispatch } from "react-redux";
 import { login } from "../../Auth/AuthSlice";
 import { getMyUrl } from "../../../configURL";
 import { useCookies } from "react-cookie";
+import { useSearchParams } from "react-router-dom";
 
 const LoginForm = () => {
   const [invalidLogin, setInvalidLogin] = useState();
   const dispatch = useDispatch();
   const url = getMyUrl();
   const [, setCookie] = useCookies(["Bearer"]);
+  const [params] = useSearchParams();
 
   const initialValues = {
     name: "",
@@ -18,8 +20,6 @@ const LoginForm = () => {
   };
 
   const onSubmit = async (values) => {
-    console.log("Submitted Values ", values);
-
     try {
       const response = await fetch("http://localhost:3000/users/login", {
         method: "POST",
@@ -36,8 +36,18 @@ const LoginForm = () => {
           userID: body.userID,
         };
         dispatch(login(user));
-        setCookie("Bearer", body.accessToken, { path: "/" });
-        window.location.replace(`${url}/pokemon-react/?userID=${user.userID}`);
+        const currentDate = new Date();
+
+        // Add five days to the current date
+        const fiveDaysFromNow = new Date(currentDate);
+        fiveDaysFromNow.setUTCDate(currentDate.getUTCDate() + 5);
+        setCookie("Bearer", body.accessToken, {
+          path: "/",
+          expires: fiveDaysFromNow,
+        });
+        params.set("userID", user.userID);
+        params.set("userName", user.name);
+        window.location.replace(`${url}/pokemon-react/?${params}`);
       }
     } catch (error) {
       console.error(error);

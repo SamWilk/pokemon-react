@@ -3,6 +3,8 @@ import { PokemonList } from "../PokemonList/PokemonList";
 import "./Pokemon.css";
 import { getMyAPIUrl } from "../../configURL";
 import { useCookies } from "react-cookie";
+import Logout from "../Logout/Logout";
+import Greetings from "../Greeting/Greeting";
 
 const Pokemon = () => {
   const [pokemonList, SetPokemonList] = useState(new Array());
@@ -15,7 +17,6 @@ const Pokemon = () => {
 
   useEffect(() => {
     GetPokemon();
-    console.log(pokemonList);
   }, [pokemonGen]);
 
   const GetPokemon = async () => {
@@ -67,7 +68,6 @@ const Pokemon = () => {
 
   const GenFilter = async (gen) => {
     SetPokemonGen(gen);
-    console.log(gen);
   };
 
   return (
@@ -98,6 +98,8 @@ const Pokemon = () => {
             );
           })}
         </div>
+        <Logout />
+        <Greetings />
       </div>
       <div className='ListHolder'>
         {pokemonList.length >= 1 ? (
