@@ -25,7 +25,6 @@ const SignUpForm = () => {
   };
 
   const onSubmit = async (values) => {
-    console.log(values);
     try {
       const response = await fetch(`${APIUrl}/users`, {
         method: "POST",
@@ -42,8 +41,18 @@ const SignUpForm = () => {
           userID: body.userID,
         };
         dispatch(login(user));
-        setCookie("Bearer", body.accessToken, { path: "/" });
-        window.location.replace(`${url}/pokemon-react/?userID=${user.userID}`);
+        const currentDate = new Date();
+
+        // Add five days to the current date
+        const fiveDaysFromNow = new Date(currentDate);
+        fiveDaysFromNow.setUTCDate(currentDate.getUTCDate() + 5);
+        setCookie("Bearer", body.accessToken, {
+          path: "/",
+          expires: fiveDaysFromNow,
+        });
+        window.location.replace(
+          `${url}/pokemon-react/?userID=${user.userID}?userName=${user.name}`
+        );
       }
     } catch (error) {
       console.error(error);
