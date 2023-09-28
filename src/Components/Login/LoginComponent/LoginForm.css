@@ -1,7 +1,28 @@
 .form-control{
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
 }
 
 .error{
     color: red;
 }
+
+.FormContainer{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+label{
+    margin-bottom: .5rem;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    min-width: 100%;
+}
+

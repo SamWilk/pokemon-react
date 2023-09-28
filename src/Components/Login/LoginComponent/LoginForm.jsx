@@ -71,8 +71,8 @@ const LoginForm = () => {
   });
 
   return (
-    <div className='FormContainer'>
-      <form onSubmit={formik.handleSubmit}>
+    <>
+      <form className='login-form' onSubmit={formik.handleSubmit}>
         {invalidLogin ? <div className='error'>{invalidLogin}</div> : null}
         <div className='form-control'>
           <label htmlFor='name'>User Name</label>
@@ -80,6 +80,8 @@ const LoginForm = () => {
             type='text'
             id='name'
             name='name'
+            placeholder='User Name'
+            className='form-input'
             onChange={formik.handleChange}
             value={formik.values.name}
           />
@@ -94,6 +96,8 @@ const LoginForm = () => {
             type='password'
             id='password'
             name='password'
+            placeholder='Password'
+            className='form-input'
             onChange={formik.handleChange}
             value={formik.values.password}
           />
@@ -102,9 +106,11 @@ const LoginForm = () => {
           ) : null}
         </div>
 
-        <button type='submit'>Submit</button>
+        <button className='submit-button' type='submit'>
+          Submit
+        </button>
       </form>
-    </div>
+    </>
   );
 };
 

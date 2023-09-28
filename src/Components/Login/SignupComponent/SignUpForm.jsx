@@ -71,17 +71,36 @@ const SignUpForm = () => {
         onSubmit={onSubmit}
       >
         {({ isSubmitting }) => (
-          <Form>
-            <label htmlFor='name'>User Name</label>
-            <Field name='name' placeholder='Joe' />
+          <Form className='Submit-Form'>
+            <div className='form-control'>
+              <label htmlFor='name'>User Name</label>
+              <Field name='name' placeholder='Joe' className='form-input' />
+            </div>
 
-            <label htmlFor='email'>Email</label>
-            <Field name='email' placeholder='Joe@yahoo.com' />
+            <div className='form-control'>
+              <label htmlFor='email'>Email</label>
+              <Field
+                name='email'
+                placeholder='Joe@yahoo.com'
+                className='form-input'
+              />
+            </div>
 
-            <label htmlFor='password'>Password</label>
-            <Field name='password' type='password' />
+            <div className='form-control'>
+              <label htmlFor='password'>Password</label>
+              <Field
+                name='password'
+                type='password'
+                placeholder='Password'
+                className='form-input'
+              />
+            </div>
 
-            <button type='submit' disabled={isSubmitting}>
+            <button
+              className='submit-button'
+              type='submit'
+              disabled={isSubmitting}
+            >
               Submit
             </button>
           </Form>

@@ -14,8 +14,8 @@ const Greetings = () => {
     if (!authUser.name || !authUser.userID) {
       dispatch(
         setUser({
-          name: searchParams.get("userName").toString(),
-          userID: searchParams.get("userID").toString(),
+          name: searchParams.get("userName"),
+          userID: searchParams.get("userID"),
         })
       );
     }
