@@ -1,0 +1,18 @@
+.GenButton{
+    border: 0px;
+    background-color: #324B4D;
+    padding: .25rem;
+    color: white;
+    transition: .3s ease;
+    box-shadow: 0 0 4px black;
+    min-width: 10vw;
+    max-width: 10vw;
+}
+
+.GenButton:hover{
+    transform: scale(1.04);
+    background-color: #94B0B3;
+    color: black;
+    min-width: 10vw;
+    max-width: 10vw;
+}

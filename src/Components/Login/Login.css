@@ -1,0 +1,104 @@
+
+.App {
+    background-color: #7EF4FF;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow-y: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-content: center;
+  
+    min-width: 100vw;
+}
+  
+.Sub-App-Container{
+    padding: 2rem 4rem;
+    min-height: 28vh;
+    background-color: #94B0B3;
+    display: flex;
+    flex-direction: row;
+    min-width: 50vw;
+    min-height: 60vh;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 0 10px black;
+
+}
+
+.form-control{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+
+.FormContainer{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    padding-bottom: 1rem;
+}
+
+.error{
+    color: red;
+}
+
+.Login-Title{
+    padding: 2rem;
+    color: white;
+    min-height: 28vh;
+    border-right: solid 3px white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: .5rem;
+
+}
+
+.Login-screen{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+    min-height: 28vh;
+    padding-left: 3vw;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    max-width: 100%;
+}
+
+label{
+    color: white;
+}
+
+.form-input{
+    min-width: 15vw;
+    padding: .25rem;
+    background-color: #94B0B3;
+    outline:none;
+    border: solid 1px gray;
+}
+
+.submit-button{
+    color: black;
+    background-color: #7EF4FF ;
+    padding: .25rem;
+    transition: .2s ease;
+    border: none;
+    min-width: 100%;
+}
+
+.submit-button:hover{
+    color: white;
+    transform: scale(1.05);
+    background-color: #324B4D;
+}

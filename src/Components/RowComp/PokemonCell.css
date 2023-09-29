@@ -4,12 +4,13 @@ div .cell {
   align-items: center;
   justify-content: center;
   min-height: 10rem;
-  min-width: 10rem;
+  min-width: 9rem;
+  max-width: 9rem;
   background-color: #94B0B3;
   margin: 1rem;
-  border-radius: 18px;
   transition-timing-function: ease-in;
   transition: 0.1s;
+  box-shadow: 0 0 5px black;
 }
 
 #zoom:hover {
@@ -17,11 +18,27 @@ div .cell {
   transition: 0.1s;
   scale: 1.05;
   background-color: #324B4D;
+  box-shadow: 0 0 8px black;
 }
 
 .subHeader {
-  min-width: 10rem;
+  min-width: 9rem;
   display: flex;
   justify-content: space-evenly;
   margin-top: .01rem;
+}
+
+div .cell-selected{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 10rem;
+  min-width: 9rem;
+  max-width: 9rem;;
+  background-color: #324B4D;
+  margin: 1rem;
+  transition-timing-function: ease-in;
+  transition: 0.1s;
+  box-shadow: 0 0 5px black;
 }
