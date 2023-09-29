@@ -3,12 +3,17 @@ import "./SignUpForm.css";
 import { Form, Field, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { login } from "../../Auth/AuthSlice";
-import { getMyAPIUrl } from "../../../configURL";
+import { getMyAPIUrl, getMyUrl } from "../../../configURL";
+import { useCookies } from "react-cookie";
+import { useSearchParams } from "react-router-dom";
 
 const SignUpForm = () => {
   const [invalidLogin, setInvalidLogin] = useState();
   const dispatch = useDispatch();
   const APIUrl = getMyAPIUrl();
+  const url = getMyUrl();
+  const [, setCookie] = useCookies("Bearer");
+  const [params] = useSearchParams();
 
   const validate = (values) => {
     let errors = {};
@@ -35,24 +40,34 @@ const SignUpForm = () => {
         setInvalidLogin("User already exists with username or email");
         throw new Error("User already exists with username or email");
       } else {
-        const body = await response.json();
-        const user = {
-          name: body.name,
-          userID: body.userID,
-        };
-        dispatch(login(user));
-        const currentDate = new Date();
-
-        // Add five days to the current date
-        const fiveDaysFromNow = new Date(currentDate);
-        fiveDaysFromNow.setUTCDate(currentDate.getUTCDate() + 5);
-        setCookie("Bearer", body.accessToken, {
-          path: "/",
-          expires: fiveDaysFromNow,
+        const loginResponse = await fetch(`${APIUrl}/users/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(values),
         });
-        window.location.replace(
-          `${url}/pokemon-react/?userID=${user.userID}?userName=${user.name}`
-        );
+        if (loginResponse.status != "200") {
+          throw new Error("User was not found");
+        } else {
+          const body = await loginResponse.json();
+          const user = {
+            name: body.name,
+            userID: body.userID,
+          };
+
+          dispatch(login(user));
+          const currentDate = new Date();
+
+          // Add five days to the current date
+          const fiveDaysFromNow = new Date(currentDate);
+          fiveDaysFromNow.setUTCDate(currentDate.getUTCDate() + 5);
+          setCookie("Bearer", body.accessToken, {
+            path: "/",
+            expires: fiveDaysFromNow,
+          });
+          params.set("userID", user.userID);
+          params.set("userName", user.name);
+          window.location.replace(`${url}/pokemon-react/?${params}`);
+        }
       }
     } catch (error) {
       console.error(error);

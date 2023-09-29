@@ -5,6 +5,7 @@ import { getMyAPIUrl } from "../../configURL";
 import { useCookies } from "react-cookie";
 import Logout from "../Logout/Logout";
 import Greetings from "../Greeting/Greeting";
+import Blastoise from "../../Images/blastoise.png";
 
 const Pokemon = () => {
   const [pokemonList, SetPokemonList] = useState(new Array());
@@ -74,38 +75,51 @@ const Pokemon = () => {
     <div className='ListHolder'>
       <div className='SideColumn'>
         {/* <GenFilter /> */}
-        <h4>Choose the Generation</h4>
-        <div className='GenContainer'>
-          <input
-            className='GenButton'
-            type='button'
-            value={`All Gen`}
-            onClick={async () => {
-              await GenFilter(0);
-            }}
-          />
-          {genArray.map((gen) => {
-            return (
-              <input
-                className='GenButton'
-                key={gen}
-                type='button'
-                value={`Gen ${gen}`}
-                onClick={async () => {
-                  await GenFilter(gen);
-                }}
-              />
-            );
-          })}
+        <div className='Side-Top'>
+          <h4>Choose the Generation</h4>
+          <div className='GenContainer'>
+            <input
+              className='GenButton'
+              type='button'
+              value={`All Gen`}
+              onClick={async () => {
+                await GenFilter(0);
+              }}
+            />
+            {genArray.map((gen) => {
+              return (
+                <input
+                  className='GenButton'
+                  key={gen}
+                  type='button'
+                  value={`Generation ${gen}`}
+                  onClick={async () => {
+                    await GenFilter(gen);
+                  }}
+                />
+              );
+            })}
+          </div>
+          <Greetings />
         </div>
-        <Logout />
-        <Greetings />
+        <div className='Side-Bottom'>
+          <Logout />
+        </div>
       </div>
       <div className='ListHolder'>
         {pokemonList.length >= 1 ? (
-          <PokemonList List={pokemonList} SelectedList={selectedPokemon} />
+          <PokemonList List={pokemonList} Generation={pokemonGen} />
         ) : (
-          <div>Bear with me now...</div>
+          <div className='LoadingScreen'>
+            <img
+              className='loadingImage'
+              src={Blastoise}
+              alt='Blastoise'
+              height={300}
+              width={300}
+            />
+            <h1>I'm working on it!</h1>
+          </div>
         )}
       </div>
     </div>
