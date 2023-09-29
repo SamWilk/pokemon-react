@@ -5,6 +5,7 @@ import { getMyAPIUrl } from "../../configURL";
 import { useCookies } from "react-cookie";
 import Logout from "../Logout/Logout";
 import Greetings from "../Greeting/Greeting";
+import Blastoise from "../../Images/blastoise.png";
 
 const Pokemon = () => {
   const [pokemonList, SetPokemonList] = useState(new Array());
@@ -109,7 +110,16 @@ const Pokemon = () => {
         {pokemonList.length >= 1 ? (
           <PokemonList List={pokemonList} Generation={pokemonGen} />
         ) : (
-          <div>Bear with me now...</div>
+          <div className='LoadingScreen'>
+            <img
+              className='loadingImage'
+              src={Blastoise}
+              alt='Blastoise'
+              height={300}
+              width={300}
+            />
+            <h1>I'm working on it!</h1>
+          </div>
         )}
       </div>
     </div>
