@@ -1,5 +1,6 @@
 import { useCookies } from "react-cookie";
 import { getMyUrl } from "../../configURL";
+import "./Logout.css";
 
 const Logout = () => {
   const [, , removeCookie] = useCookies("Bearer");
@@ -18,9 +19,9 @@ const Logout = () => {
   };
 
   return (
-    <div>
-      <button onClick={() => LogoutMethod()}>Logout</button>
-    </div>
+    <button className='GenButton' onClick={() => LogoutMethod()}>
+      Logout
+    </button>
   );
 };
 

@@ -74,36 +74,40 @@ const Pokemon = () => {
     <div className='ListHolder'>
       <div className='SideColumn'>
         {/* <GenFilter /> */}
-        <h4>Choose the Generation</h4>
-        <div className='GenContainer'>
-          <input
-            className='GenButton'
-            type='button'
-            value={`All Gen`}
-            onClick={async () => {
-              await GenFilter(0);
-            }}
-          />
-          {genArray.map((gen) => {
-            return (
-              <input
-                className='GenButton'
-                key={gen}
-                type='button'
-                value={`Gen ${gen}`}
-                onClick={async () => {
-                  await GenFilter(gen);
-                }}
-              />
-            );
-          })}
+        <div className='Side-Top'>
+          <h4>Choose the Generation</h4>
+          <div className='GenContainer'>
+            <input
+              className='GenButton'
+              type='button'
+              value={`All Gen`}
+              onClick={async () => {
+                await GenFilter(0);
+              }}
+            />
+            {genArray.map((gen) => {
+              return (
+                <input
+                  className='GenButton'
+                  key={gen}
+                  type='button'
+                  value={`Generation ${gen}`}
+                  onClick={async () => {
+                    await GenFilter(gen);
+                  }}
+                />
+              );
+            })}
+          </div>
+          <Greetings />
         </div>
-        <Logout />
-        <Greetings />
+        <div className='Side-Bottom'>
+          <Logout />
+        </div>
       </div>
       <div className='ListHolder'>
         {pokemonList.length >= 1 ? (
-          <PokemonList List={pokemonList} SelectedList={selectedPokemon} />
+          <PokemonList List={pokemonList} Generation={pokemonGen} />
         ) : (
           <div>Bear with me now...</div>
         )}
