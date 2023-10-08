@@ -6,6 +6,7 @@ import { useCookies } from "react-cookie";
 import Logout from "../Logout/Logout";
 import Greetings from "../Greeting/Greeting";
 import Blastoise from "../../Images/blastoise.png";
+import UserButton from "../UserPage/UserButton/UserButton";
 
 const Pokemon = () => {
   const [pokemonList, SetPokemonList] = useState(new Array());
@@ -72,15 +73,15 @@ const Pokemon = () => {
   };
 
   return (
-    <div className='ListHolder'>
-      <div className='SideColumn'>
+    <div className="ListHolder">
+      <div className="SideColumn">
         {/* <GenFilter /> */}
-        <div className='Side-Top'>
+        <div className="Side-Top">
           <h4>Choose the Generation</h4>
-          <div className='GenContainer'>
+          <div className="GenContainer">
             <input
-              className='GenButton'
-              type='button'
+              className="GenButton"
+              type="button"
               value={`All Gen`}
               onClick={async () => {
                 await GenFilter(0);
@@ -89,9 +90,9 @@ const Pokemon = () => {
             {genArray.map((gen) => {
               return (
                 <input
-                  className='GenButton'
+                  className="GenButton"
                   key={gen}
-                  type='button'
+                  type="button"
                   value={`Generation ${gen}`}
                   onClick={async () => {
                     await GenFilter(gen);
@@ -102,19 +103,20 @@ const Pokemon = () => {
           </div>
           <Greetings />
         </div>
-        <div className='Side-Bottom'>
+        <div className="Side-Bottom">
+          <UserButton />
           <Logout />
         </div>
       </div>
-      <div className='ListHolder'>
+      <div className="ListHolder">
         {pokemonList.length >= 1 ? (
           <PokemonList List={pokemonList} Generation={pokemonGen} />
         ) : (
-          <div className='LoadingScreen'>
+          <div className="LoadingScreen">
             <img
-              className='loadingImage'
+              className="loadingImage"
               src={Blastoise}
-              alt='Blastoise'
+              alt="Blastoise"
               height={300}
               width={300}
             />
