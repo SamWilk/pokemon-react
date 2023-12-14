@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import "../../logic/CheckTyping.css";
 
-export const PokemonType = ({ PokemonType }) => {
+export const PokemonType = ({ PokemonType, search }) => {
   const [colorStyle, setColorStyle] = useState("");
 
   useEffect(() => {
     SetColor(PokemonType);
-  }, []);
+  }, [search]);
 
   const SetColor = (typing) => {
     const lowerType = typing.toLowerCase();
@@ -70,5 +70,9 @@ export const PokemonType = ({ PokemonType }) => {
     }
   };
 
-  return <div id="typeName" className={colorStyle}>{PokemonType}</div>;
+  return (
+    <div id='typeName' className={`${colorStyle}`}>
+      {PokemonType}
+    </div>
+  );
 };

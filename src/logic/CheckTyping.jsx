@@ -7,11 +7,11 @@ import "./CheckTyping.css";
  * @param {pokemon} param0
  * @returns
  */
-export const CheckTyping = ({ pokemon }) => {
+export const CheckTyping = ({ pokemon, search }) => {
   return (
-    <div className="typeRow">
+    <div className='typeRow'>
       {pokemon.types.map((type, idx) => {
-        return <PokemonType PokemonType={type} key={idx} />;
+        return <PokemonType PokemonType={type} key={idx} search={search} />;
       })}
     </div>
   );

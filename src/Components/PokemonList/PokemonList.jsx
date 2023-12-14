@@ -16,13 +16,15 @@ export const PokemonList = ({ List, Generation }) => {
         className='SearchBar'
         placeholder={searchPlaceHolder}
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={(e) => {
+          setSearch(e.target.value);
+        }}
       />
       <div className='container'>
         {List.filter((element) =>
           element.name.toLowerCase().includes(search.toLowerCase())
         ).map((poke, idx) => {
-          return <PokemonCell pokemon={poke} key={idx} />;
+          return <PokemonCell pokemon={poke} key={idx} search={search} />;
         })}
       </div>
     </div>
