@@ -1,29 +1,20 @@
-import { getMyAPIUrl } from "../../configURL";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import User from "../../Objects/User";
+import { ValidateUserMethod } from "../Auth/ValidateUser";
 
 const Greetings = () => {
-  const APIUrl = getMyAPIUrl();
   const [cookies] = useCookies(["Bearer"]);
   const [user, setUser] = useState(new User());
 
   useEffect(() => {
     if (cookies) {
-      something();
+      GetCurrentUser();
     }
   }, []);
 
-  const something = async () => {
-    const userResponse = await fetch(`${APIUrl}/users/getUser`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${cookies.Bearer}`,
-      },
-    });
-
-    setUser(await userResponse.json());
+  const GetCurrentUser = async () => {
+    setUser(await ValidateUserMethod(cookies));
   };
 
   return <div>Hey Trainer, {user.name}</div>;
