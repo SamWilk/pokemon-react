@@ -1,27 +1,32 @@
-import { getMyUrl } from "../../configURL";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
-import { setUser } from "../Auth/AuthSlice";
+import { getMyAPIUrl } from "../../configURL";
+import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
+import User from "../../Objects/User";
 
 const Greetings = () => {
-  const url = getMyUrl();
-  const dispatch = useDispatch();
-  const [searchParams] = useSearchParams();
-  const authUser = useSelector((state) => state.auth.value);
+  const APIUrl = getMyAPIUrl();
+  const [cookies] = useCookies(["Bearer"]);
+  const [user, setUser] = useState(new User());
 
   useEffect(() => {
-    if (!authUser.name || !authUser.userID) {
-      dispatch(
-        setUser({
-          name: searchParams.get("userName"),
-          userID: searchParams.get("userID"),
-        })
-      );
+    if (cookies) {
+      something();
     }
   }, []);
 
-  return <div>Hey Trainer, {authUser.name}</div>;
+  const something = async () => {
+    const userResponse = await fetch(`${APIUrl}/users/getUser`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${cookies.Bearer}`,
+      },
+    });
+
+    setUser(await userResponse.json());
+  };
+
+  return <div>Hey Trainer, {user.name}</div>;
 };
 
 export default Greetings;
