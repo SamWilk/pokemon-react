@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { PokemonList } from "../PokemonList/PokemonList";
 import "./Pokemon.css";
-import { getMyAPIUrl } from "../../configURL";
+import { getMyAPIUrl, getMyUrl } from "../../configURL";
 import { useCookies } from "react-cookie";
 import Logout from "../Logout/Logout";
 import Blastoise from "../../Images/blastoise.png";
 import UserPage from "../UserPage/User";
 import User from "../../Objects/User";
 import { ValidateUserMethod } from "../Auth/ValidateUser";
+import { useFormik } from "formik";
 
 const Pokemon = () => {
   const [pokemonList, SetPokemonList] = useState(new Array());
@@ -16,9 +17,11 @@ const Pokemon = () => {
   const [cookies] = useCookies(["Bearer"]);
   const [showModal, setShowModal] = useState(false);
   const [currentUser, setCurrentUser] = useState(new User());
+  const [invalidUpdate, setInvalidUpdate] = useState();
 
   let genArray = [1, 2, 3, 4, 5, 6, 7];
   const APIUrl = getMyAPIUrl();
+  const url = getMyUrl();
 
   useEffect(() => {
     GetPokemon();
@@ -83,6 +86,40 @@ const Pokemon = () => {
     SetPokemonGen(gen);
   };
 
+  const initialValues = {
+    name: "",
+  };
+
+  const validate = (values) => {
+    let errors = {};
+
+    if (!values.name) errors.name = "Required";
+
+    return errors;
+  };
+
+  const onSubmit = async (values) => {
+    // Make API call here
+    try {
+      const userResponse = await fetch(`${APIUrl}/users/${currentUser.name}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${cookies.Bearer}`,
+        },
+        body: JSON.stringify(values),
+      });
+      if (userResponse.status != "200") {
+        //invalidUpdate = "Username already taken, choose another";
+        setInvalidUpdate("Username already taken, choose another");
+      } else {
+        window.location.replace(`${url}/pokemon-react/`);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className='ListHolder'>
       <div className='SideColumn'>
@@ -121,6 +158,13 @@ const Pokemon = () => {
             open={showModal}
             onClose={() => setShowModal(false)}
             currentUser={currentUser}
+            cookies={cookies}
+            useFormik={useFormik({
+              initialValues,
+              onSubmit,
+              validate,
+            })}
+            invalidUpdate={invalidUpdate}
           />
           <Logout />
         </div>
