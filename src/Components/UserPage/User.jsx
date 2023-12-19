@@ -1,37 +1,72 @@
 import { useState } from "react";
-import { getMyAPIUrl } from "../../configURL";
+import { getMyAPIUrl, getMyUrl } from "../../configURL";
 import "./User.css";
+import { useCookies } from "react-cookie";
+import { useFormik } from "formik";
 
 const UserPage = ({ open, onClose, currentUser }) => {
   if (!open) return null;
   const [newUserName, setNewUserName] = useState("");
+  const [cookies] = useCookies("Bearer");
   const APIURL = getMyAPIUrl();
+  const url = getMyUrl();
+  const [invalidUpdate, setInvalidUpdate] = useState();
 
-  const UpdateName = async (newName) => {
-    // Make API call here
-    console.log("Updating Name");
+  const initialValues = {
+    name: "",
   };
+
+  const validate = (values) => {
+    let errors = {};
+
+    if (!values.name) errors.name = "Required";
+
+    return errors;
+  };
+
+  const onSubmit = async (values) => {
+    // Make API call here
+    try {
+      const userResponse = await fetch(`${APIURL}/users/${currentUser.name}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${cookies.Bearer}`,
+        },
+        body: JSON.stringify(values),
+      });
+      if (userResponse.status != "200") {
+        setInvalidUpdate("Username already taken, choose another");
+      } else {
+        window.location.replace(`${url}/pokemon-react/`);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const formik = useFormik({
+    initialValues,
+    onSubmit,
+    validate,
+  });
 
   return (
     <div className='ProfileContainer'>
       <div>
         <div>Hello there Trainer {currentUser.name}</div>
-        <div>You've been with us since X date</div>
       </div>
       <div>
-        <h2>Edit Form for {currentUser.name} Trainer</h2>
-        <form
-          onSubmit={async (e) => {
-            e.preventDefault();
-            await UpdateName();
-          }}
-        >
+        <h2>Update Trainer {currentUser.name}</h2>
+        <form onSubmit={formik.handleSubmit}>
+          {invalidUpdate ? <div className='error'>{invalidUpdate}</div> : null}
+
           <input
+            id='name'
+            name='name'
             placeholder={currentUser.name}
-            value={newUserName}
-            onChange={(e) => {
-              setNewUserName(e.target.value);
-            }}
+            value={formik.values.name}
+            onChange={formik.handleChange}
           />
           <button type='submit'>Submit</button>
         </form>

@@ -4,7 +4,6 @@ import "./Pokemon.css";
 import { getMyAPIUrl } from "../../configURL";
 import { useCookies } from "react-cookie";
 import Logout from "../Logout/Logout";
-import Greetings from "../Greeting/Greeting";
 import Blastoise from "../../Images/blastoise.png";
 import UserPage from "../UserPage/User";
 import User from "../../Objects/User";
@@ -113,10 +112,11 @@ const Pokemon = () => {
               );
             })}
           </div>
-          <Greetings />
         </div>
         <div className='Side-Bottom'>
-          <button onClick={() => setShowModal(true)}>Profile</button>
+          <button className='GenButton' onClick={() => setShowModal(true)}>
+            Profile
+          </button>
           <UserPage
             open={showModal}
             onClose={() => setShowModal(false)}
