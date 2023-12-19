@@ -53,10 +53,7 @@ const UserPage = ({ open, onClose, currentUser }) => {
 
   return (
     <div className='ProfileContainer'>
-      <div>
-        <div>Hello there Trainer {currentUser.name}</div>
-      </div>
-      <div>
+      <div className='ProfileContent'>
         <h2>Update Trainer {currentUser.name}</h2>
         <form onSubmit={formik.handleSubmit}>
           {invalidUpdate ? <div className='error'>{invalidUpdate}</div> : null}

@@ -11,4 +11,23 @@
   transform: translate(-50%, -50%);
   background-color: #7EF4FF;
   z-index: 10;
+  border-radius: 8px;
+  box-shadow: 0 0 5px black;
+  align-items: center;
+
+}
+
+.ProfileContent{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: center;
+  max-height: 30vh;
+  max-width: 80%;
+  min-height: 25vh;
+  min-width: 80%;
+}
+
+h2{
+  margin: 1rem;
 }
