@@ -7,7 +7,7 @@ const config = {
   },
   production: {
     SiteUrl: "https://samwilk.github.io", // Your production API URL
-    APIUrl: "http://localhost:3000",
+    APIUrl: "https://samwilk.github.io/pokemon-react-server",
   },
 };
 
