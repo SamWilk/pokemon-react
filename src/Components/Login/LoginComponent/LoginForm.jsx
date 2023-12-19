@@ -3,7 +3,7 @@ import "./LoginForm.css";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { login } from "../../Auth/AuthSlice";
-import { getMyUrl } from "../../../configURL";
+import { getMyAPIUrl, getMyUrl } from "../../../configURL";
 import { useCookies } from "react-cookie";
 import { useSearchParams } from "react-router-dom";
 
@@ -13,6 +13,7 @@ const LoginForm = () => {
   const url = getMyUrl();
   const [, setCookie] = useCookies(["Bearer"]);
   const [params] = useSearchParams();
+  const APIURL = getMyAPIUrl();
 
   const initialValues = {
     name: "",
@@ -21,7 +22,7 @@ const LoginForm = () => {
 
   const onSubmit = async (values) => {
     try {
-      const response = await fetch("http://localhost:3000/users/login", {
+      const response = await fetch(`${APIURL}/users/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),

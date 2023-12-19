@@ -6,7 +6,7 @@ const config = {
     APIUrl: "http://localhost:3000",
   },
   production: {
-    SiteUrl: "https://your-production-url.com", // Your production API URL
+    SiteUrl: "http://localhost:4173", // Your production API URL
     APIUrl: "http://localhost:3000",
   },
 };

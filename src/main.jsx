@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Components/Login/Login";
 import { Provider } from "react-redux";
 import store from "./Store/store";
+import UserPage from "./Components/UserPage/User";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
