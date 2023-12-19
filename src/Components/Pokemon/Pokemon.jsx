@@ -1,25 +1,39 @@
 import { useEffect, useState } from "react";
 import { PokemonList } from "../PokemonList/PokemonList";
 import "./Pokemon.css";
-import { getMyAPIUrl } from "../../configURL";
+import { getMyAPIUrl, getMyUrl } from "../../configURL";
 import { useCookies } from "react-cookie";
 import Logout from "../Logout/Logout";
-import Greetings from "../Greeting/Greeting";
 import Blastoise from "../../Images/blastoise.png";
-import UserButton from "../UserPage/UserButton/UserButton";
+import UserPage from "../UserPage/User";
+import User from "../../Objects/User";
+import { ValidateUserMethod } from "../Auth/ValidateUser";
+import { useFormik } from "formik";
 
 const Pokemon = () => {
   const [pokemonList, SetPokemonList] = useState(new Array());
   const [pokemonGen, SetPokemonGen] = useState(0);
   const [selectedPokemon, SetSelectedPokemon] = useState(new Array());
   const [cookies] = useCookies(["Bearer"]);
+  const [showModal, setShowModal] = useState(false);
+  const [currentUser, setCurrentUser] = useState(new User());
+  const [invalidUpdate, setInvalidUpdate] = useState();
 
   let genArray = [1, 2, 3, 4, 5, 6, 7];
   const APIUrl = getMyAPIUrl();
+  const url = getMyUrl();
 
   useEffect(() => {
     GetPokemon();
   }, [pokemonGen]);
+
+  useEffect(() => {
+    GetCurrentUser();
+  }, []);
+
+  const GetCurrentUser = async () => {
+    setCurrentUser(await ValidateUserMethod(cookies));
+  };
 
   const GetPokemon = async () => {
     if (pokemonGen == 0) {
@@ -72,16 +86,50 @@ const Pokemon = () => {
     SetPokemonGen(gen);
   };
 
+  const initialValues = {
+    name: "",
+  };
+
+  const validate = (values) => {
+    let errors = {};
+
+    if (!values.name) errors.name = "Required";
+
+    return errors;
+  };
+
+  const onSubmit = async (values) => {
+    // Make API call here
+    try {
+      const userResponse = await fetch(`${APIUrl}/users/${currentUser.name}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${cookies.Bearer}`,
+        },
+        body: JSON.stringify(values),
+      });
+      if (userResponse.status != "200") {
+        //invalidUpdate = "Username already taken, choose another";
+        setInvalidUpdate("Username already taken, choose another");
+      } else {
+        window.location.replace(`${url}/pokemon-react/`);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <div className="ListHolder">
-      <div className="SideColumn">
+    <div className='ListHolder'>
+      <div className='SideColumn'>
         {/* <GenFilter /> */}
-        <div className="Side-Top">
+        <div className='Side-Top'>
           <h4>Choose the Generation</h4>
-          <div className="GenContainer">
+          <div className='GenContainer'>
             <input
-              className="GenButton"
-              type="button"
+              className='GenButton'
+              type='button'
               value={`All Gen`}
               onClick={async () => {
                 await GenFilter(0);
@@ -90,9 +138,9 @@ const Pokemon = () => {
             {genArray.map((gen) => {
               return (
                 <input
-                  className="GenButton"
+                  className='GenButton'
                   key={gen}
-                  type="button"
+                  type='button'
                   value={`Generation ${gen}`}
                   onClick={async () => {
                     await GenFilter(gen);
@@ -101,22 +149,35 @@ const Pokemon = () => {
               );
             })}
           </div>
-          <Greetings />
         </div>
-        <div className="Side-Bottom">
-          <UserButton />
+        <div className='Side-Bottom'>
+          <button className='GenButton' onClick={() => setShowModal(true)}>
+            Profile
+          </button>
+          <UserPage
+            open={showModal}
+            onClose={() => setShowModal(false)}
+            currentUser={currentUser}
+            cookies={cookies}
+            useFormik={useFormik({
+              initialValues,
+              onSubmit,
+              validate,
+            })}
+            invalidUpdate={invalidUpdate}
+          />
           <Logout />
         </div>
       </div>
-      <div className="ListHolder">
+      <div className='ListHolder'>
         {pokemonList.length >= 1 ? (
           <PokemonList List={pokemonList} Generation={pokemonGen} />
         ) : (
-          <div className="LoadingScreen">
+          <div className='LoadingScreen'>
             <img
-              className="loadingImage"
+              className='loadingImage'
               src={Blastoise}
-              alt="Blastoise"
+              alt='Blastoise'
               height={300}
               width={300}
             />
