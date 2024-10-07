@@ -13,8 +13,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path='/pokemon-react' element={<App />} />
-          <Route path='/pokemon-react/login' element={<Login />} />
+          <Route path="/" element={<App />} />
+          <Route path="/pokemon-react/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </Provider>

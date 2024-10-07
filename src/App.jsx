@@ -36,8 +36,8 @@ function App() {
   };
 
   return (
-    <div className='App'>
-      <div className='PokeContainer'>
+    <div className="App">
+      <div className="PokeContainer">
         <Pokemon />
       </div>
     </div>

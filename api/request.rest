@@ -1,0 +1,19 @@
+GET http://localhost:3000/pokemon
+
+### 
+
+GET http://localhost:3000/pokemon/gen
+Content-Type: application/json
+
+{
+    "generation": 7
+}
+
+###
+
+PATCH http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "Name": "Sam2"
+}

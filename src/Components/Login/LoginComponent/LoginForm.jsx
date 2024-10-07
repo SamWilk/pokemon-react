@@ -48,7 +48,8 @@ const LoginForm = () => {
         });
         params.set("userID", user.userID);
         params.set("userName", user.name);
-        window.location.replace(`${url}/pokemon-react/?${params}`);
+        console.log(url);
+        window.location.replace(`${url}/?${params}`);
       }
     } catch (error) {
       console.error(error);
@@ -73,41 +74,41 @@ const LoginForm = () => {
 
   return (
     <>
-      <form className='login-form' onSubmit={formik.handleSubmit}>
-        {invalidLogin ? <div className='error'>{invalidLogin}</div> : null}
-        <div className='form-control'>
-          <label htmlFor='name'>User Name</label>
+      <form className="login-form" onSubmit={formik.handleSubmit}>
+        {invalidLogin ? <div className="error">{invalidLogin}</div> : null}
+        <div className="form-control">
+          <label htmlFor="name">User Name</label>
           <input
-            type='text'
-            id='name'
-            name='name'
-            placeholder='User Name'
-            className='form-input'
+            type="text"
+            id="name"
+            name="name"
+            placeholder="User Name"
+            className="form-input"
             onChange={formik.handleChange}
             value={formik.values.name}
           />
           {formik.errors.name ? (
-            <div className='error'>{formik.errors.name}</div>
+            <div className="error">{formik.errors.name}</div>
           ) : null}
         </div>
 
-        <div className='form-control'>
-          <label htmlFor='password'>Password</label>
+        <div className="form-control">
+          <label htmlFor="password">Password</label>
           <input
-            type='password'
-            id='password'
-            name='password'
-            placeholder='Password'
-            className='form-input'
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            className="form-input"
             onChange={formik.handleChange}
             value={formik.values.password}
           />
           {formik.errors.password ? (
-            <div className='error'>{formik.errors.password}</div>
+            <div className="error">{formik.errors.password}</div>
           ) : null}
         </div>
 
-        <button className='submit-button' type='submit'>
+        <button className="submit-button" type="submit">
           Submit
         </button>
       </form>

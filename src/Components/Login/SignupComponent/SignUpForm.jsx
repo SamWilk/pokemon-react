@@ -66,7 +66,7 @@ const SignUpForm = () => {
           });
           params.set("userID", user.userID);
           params.set("userName", user.name);
-          window.location.replace(`${url}/pokemon-react/?${params}`);
+          window.location.replace(`${url}/?${params}`);
         }
       }
     } catch (error) {
@@ -75,7 +75,7 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className='FormContainer'>
+    <div className="FormContainer">
       {invalidLogin ? <div>{invalidLogin}</div> : null}
       <Formik
         initialValues={{
@@ -86,34 +86,34 @@ const SignUpForm = () => {
         onSubmit={onSubmit}
       >
         {({ isSubmitting }) => (
-          <Form className='Submit-Form'>
-            <div className='form-control'>
-              <label htmlFor='name'>User Name</label>
-              <Field name='name' placeholder='Joe' className='form-input' />
+          <Form className="Submit-Form">
+            <div className="form-control">
+              <label htmlFor="name">User Name</label>
+              <Field name="name" placeholder="Joe" className="form-input" />
             </div>
 
-            <div className='form-control'>
-              <label htmlFor='email'>Email</label>
+            <div className="form-control">
+              <label htmlFor="email">Email</label>
               <Field
-                name='email'
-                placeholder='Joe@yahoo.com'
-                className='form-input'
+                name="email"
+                placeholder="Joe@yahoo.com"
+                className="form-input"
               />
             </div>
 
-            <div className='form-control'>
-              <label htmlFor='password'>Password</label>
+            <div className="form-control">
+              <label htmlFor="password">Password</label>
               <Field
-                name='password'
-                type='password'
-                placeholder='Password'
-                className='form-input'
+                name="password"
+                type="password"
+                placeholder="Password"
+                className="form-input"
               />
             </div>
 
             <button
-              className='submit-button'
-              type='submit'
+              className="submit-button"
+              type="submit"
               disabled={isSubmitting}
             >
               Submit

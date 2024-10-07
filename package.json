@@ -3,13 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://samwilk.github.io/pokemon-react/",
   "scripts": {
     "predeploy": "vite build",
     "deploy": "gh-pages -d dist",
     "dev": "npm i && vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "vite"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.6",

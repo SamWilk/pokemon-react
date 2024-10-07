@@ -1,0 +1,12 @@
+services:
+  pokemon-ui:
+    container_name: pokemon-ui
+    image: pokemon-react-ui:latest
+    ports:
+      - 4000:4000
+
+  pokemon-server:
+    container_name: pokemon-server
+    image: pokemon-react-server:latest
+    ports:
+      - 3000:3000

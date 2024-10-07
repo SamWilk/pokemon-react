@@ -4,7 +4,7 @@ const UserButton = () => {
   const url = getMyUrl();
 
   const Clicked = () => {
-    window.location.replace(`${url}/pokemon-react/userpage`);
+    window.location.replace(`${url}/userpage`);
   };
 
   return <button onClick={() => Clicked()}>Profile</button>;
