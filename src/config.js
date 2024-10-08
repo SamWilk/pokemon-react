@@ -7,7 +7,7 @@ const config = {
   },
   production: {
     SiteUrl: "http://139.144.164.55:4000", // Your production API URL
-    APIUrl: "http://139.144.164.55:3000/api",
+    APIUrl: "http://139.144.164.55:4000/api",
   },
 };
 
