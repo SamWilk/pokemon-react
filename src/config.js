@@ -6,8 +6,8 @@ const config = {
     APIUrl: "http://localhost:3000/api",
   },
   production: {
-    SiteUrl: "http://localhost:4000", // Your production API URL
-    APIUrl: "http://localhost:3000/api",
+    SiteUrl: "http://139.144.164.55:4000", // Your production API URL
+    APIUrl: "http://139.144.164.55:3000/api",
   },
 };
 
