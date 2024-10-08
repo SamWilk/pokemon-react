@@ -75,3 +75,18 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/pokemon-react-server:latest
           context: ./api
+
+  deploy-k8s-prod:
+    runs-on: ubuntu-latest
+    needs: [build-docker-image-server, build-docker-image-ui]
+    steps:
+      - name: Configure kubectl
+        uses: Azure/k8s-set-context@v1
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBE_CONFIG }}
+
+      - name: Deploy k8s yaml
+        id: deploy-k8s-yaml
+        run: |
+          kubectl -n pokemon-react rollout restart deployment

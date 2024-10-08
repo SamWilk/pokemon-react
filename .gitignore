@@ -27,3 +27,5 @@ pokemon-psql
 *.njsproj
 *.sln
 *.sw?
+
+/deployments/config.*

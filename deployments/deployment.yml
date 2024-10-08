@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pokemon-react-app
+  namespace: pokemon-react
+  labels:
+    app: pokemon-react-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pokemon-react-app
+  template:
+    metadata:
+      labels:
+        app: pokemon-react-app
+    spec:
+      containers:
+        - name: pokemon-server
+          image: samwilk18/pokemon-react-server:latest
+          ports:
+            - containerPort: 3000
+        - name: pokemon-ui
+          image: samwilk18/pokemon-react-ui:latest
+          ports:
+            - containerPort: 4000
