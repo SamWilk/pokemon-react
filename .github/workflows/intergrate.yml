@@ -19,8 +19,8 @@ jobs:
 
       - name: Creating .env file
         run: |
-          touch /api/.env
-          echo "${{ secrets.PROD_ENV }}" >> /api/.env
+          touch ./api/.env
+          echo "${{ secrets.PROD_ENV }}" >> ./api/.env
 
   confirm-build:
     needs: create-env
