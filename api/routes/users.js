@@ -103,6 +103,10 @@ router.get(
 router.patch("/api/users", authenticateToken, async (request, response) => {
   const updateUser = request.user;
   console.log(`New Updated User: ${updateUser}`);
+  // Code goes here for updating user name
+
+  
+  response.status(200).send(updateUser)
 });
 
 module.exports = router;
