@@ -96,13 +96,36 @@ router.get(
   "/api/users/getUser",
   authenticateToken,
   async (request, response) => {
+    console.log(request.user);
     response.status(200).send(request.user);
   }
 );
 
 router.patch("/api/users", authenticateToken, async (request, response) => {
-  const updateUser = request.user;
-  console.log(`New Updated User: ${updateUser}`);
+  try {
+    const client = await db.connect();
+    const query = {
+      text: `update users
+             set name = $1
+             where id = $2`,
+      values: [request.body.name, request.body.userID],
+    };
+    client.query(query, async (err, res) => {
+      if (err) {
+        console.error(err);
+        console.log("No Pokemon Found");
+        response.status(400).send();
+      } else {
+        console.log(`User updated: ${request.body.name}`);
+        response.status(200).send(`User updated: ${request.body.name}`);
+      }
+    });
+    client.release();
+  } catch (error) {
+    console.log("Could not update user name");
+    console.log(error);
+    response.status(500).send(`Error Updating User: ${request.body.name}`);
+  }
 });
 
 module.exports = router;

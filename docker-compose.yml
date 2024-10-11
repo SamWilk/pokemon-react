@@ -1,3 +1,6 @@
+version: "3"
+name: "pokemon-tracker-app"
+
 services:
   pokemon-ui:
     container_name: pokemon-ui

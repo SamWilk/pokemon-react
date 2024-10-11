@@ -19,7 +19,7 @@ const Logout = () => {
   };
 
   return (
-    <button className='GenButton' onClick={() => LogoutMethod()}>
+    <button className="GenButton" onClick={() => LogoutMethod()}>
       Logout
     </button>
   );

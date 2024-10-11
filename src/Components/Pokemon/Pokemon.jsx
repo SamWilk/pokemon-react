@@ -14,7 +14,7 @@ const Pokemon = () => {
   const [pokemonList, SetPokemonList] = useState(new Array());
   const [pokemonGen, SetPokemonGen] = useState(0);
   const [selectedPokemon, SetSelectedPokemon] = useState(new Array());
-  const [cookies] = useCookies(["Bearer"]);
+  const [cookies, , removeCookie] = useCookies(["Bearer"]);
   const [showModal, setShowModal] = useState(false);
   const [currentUser, setCurrentUser] = useState(new User());
   const [invalidUpdate, setInvalidUpdate] = useState();
@@ -98,8 +98,21 @@ const Pokemon = () => {
     return errors;
   };
 
+  const UpdateToken = async () => {
+    const currentDate = new Date();
+
+    // Add five days to the current date
+    const fiveDaysFromNow = new Date(currentDate);
+    fiveDaysFromNow.setUTCDate(currentDate.getUTCDate() + 5);
+    removeCookie("Bearer", {
+      path: "/",
+    });
+    window.location.replace(`${url}/pokemon-react/login`);
+  };
+
   const onSubmit = async (values) => {
     // Make API call here
+    const valuesAndUser = { ...currentUser, ...values };
     try {
       const userResponse = await fetch(`${APIUrl}/users`, {
         method: "PATCH",
@@ -107,13 +120,12 @@ const Pokemon = () => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${cookies.Bearer}`,
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify(valuesAndUser),
       });
       if (userResponse.status != "200") {
-        //invalidUpdate = "Username already taken, choose another";
         setInvalidUpdate("Username already taken, choose another");
       } else {
-        window.location.replace(`${url}/`);
+        UpdateToken();
       }
     } catch (error) {
       console.error(error);
@@ -156,7 +168,9 @@ const Pokemon = () => {
           </button>
           <UserPage
             open={showModal}
-            onClose={() => setShowModal(false)}
+            onClose={() => {
+              setShowModal(false);
+            }}
             currentUser={currentUser}
             cookies={cookies}
             useFormik={useFormik({
