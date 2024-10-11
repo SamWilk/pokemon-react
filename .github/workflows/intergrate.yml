@@ -8,26 +8,16 @@ on:
     branches:
       - "main"
       - "development-branch"
+  workflow_dispatch:
 
 jobs:
-  create-env:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Creating .env file
-        run: |
-          echo "${{ secrets.PROD_ENV }}" > ./api/.env
-
   confirm-build:
-    needs: create-env
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v1
         with:
-          node-version: 14
+          node-version: 18
       - run: |
           npm ci
           npm run build
@@ -59,6 +49,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Creating .env file
+        run: |
+          echo "${{ secrets.PROD_ENV }}" >> ./api/.env
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3

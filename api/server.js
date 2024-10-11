@@ -13,14 +13,6 @@ const pokemon = require("./routes/pokemon");
 const users = require("./routes/users");
 
 app.get("/api", async (req, res) => {
-  try {
-    const client = await db.connect();
-
-    client.release();
-  } catch (error) {
-    console.log(error);
-  }
-
   res.send("Pokemon-react-Server is running");
 });
 app.use(pokemon);
