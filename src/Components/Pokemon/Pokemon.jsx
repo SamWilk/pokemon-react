@@ -19,7 +19,7 @@ const Pokemon = () => {
   const [currentUser, setCurrentUser] = useState(new User());
   const [invalidUpdate, setInvalidUpdate] = useState();
 
-  let genArray = [1, 2, 3, 4, 5, 6, 7];
+  let genArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const APIUrl = getMyAPIUrl();
   const url = getMyUrl();
 
