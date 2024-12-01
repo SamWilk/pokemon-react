@@ -1,5 +1,5 @@
 CREATE TABLE pokemon (
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     sprite TEXT NOT NULL,
     types VARCHAR(255)[] NOT NULL,
