@@ -1,3 +1,1 @@
-print 'Hello there';
-
-print 'From the other side';
+SELECT NOW();
