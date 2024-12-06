@@ -27,16 +27,6 @@ while getopts "s:d:" opt; do
   esac
 done
 
-# If no database name is provided, default to the folder name where the script is located
-if [ -z "$dbName" ]; then
-  dbName=$(basename "$PWD")
-fi
-
-# If no server instance is provided, default to '.'
-if [ -z "$ServerInstance" ]; then
-  ServerInstance="."
-fi
-
 # Print out what we're doing
 echo "== Initiating system instance variables..."
 echo "Server Instance: $ServerInstance"
