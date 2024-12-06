@@ -22,9 +22,34 @@ jobs:
           npm ci
           npm run build
 
-  build-docker-image-ui:
+  sync-db:
     runs-on: ubuntu-latest
     needs: confirm-build
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up PostgreSQL
+      uses: postgresql-actions/setup-postgresql@v1
+      with:
+        postgresql-version: '17'
+
+    - name: Install psql client
+      run: sudo apt-get install postgresql-client
+  
+    - name: Execute shell script to run SQL files
+      run: |
+        chmod +x ./run-db-scripts.sh
+        ./run-db-scripts.sh
+  
+    - name: Clean up PostgreSQL
+      run: |
+        sudo systemctl stop postgresql
+
+  build-docker-image-ui:
+    runs-on: ubuntu-latest
+    needs: sync-db
 
     steps:
       - name: Set up Docker Buildx
@@ -44,7 +69,7 @@ jobs:
 
   build-docker-image-server:
     runs-on: ubuntu-latest
-    needs: confirm-build
+    needs: sync-db
 
     steps:
       - name: Checkout code
