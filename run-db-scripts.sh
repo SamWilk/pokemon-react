@@ -1,8 +1,15 @@
 #!/bin/bash
 
+if [ -f .env ]; then
+    export $(grep -v '^#' .env | xargs)  # This loads the environment variables
+else
+    echo ".env file not found!"
+    exit 1
+fi
+
 # Default SQL Server instance and database name
-ServerInstance="."
-dbName="CWS"
+ServerInstance=$DB_HOST
+dbName=$DB
 
 # Parse arguments (if provided) for ServerInstance and Database name
 while getopts "s:d:" opt; do
@@ -40,14 +47,16 @@ echo "Database Name: $dbName"
 
 # Here we assume sqlcmd is available and run a sample SQL script file
 # Modify this path to point to the actual SQL script you want to run
-sqlScriptFolder="$(pwd)/sql-script/"
+sqlScriptFolder="$(pwd)/sql-script"
 
 for sqlFile in "$sqlScriptFolder"/*.sql; do
   if [ -f "$sqlFile" ]; then
     echo "Executing SQL script: $sqlFile"
     
     # Run the SQL script (adjust for your SQL execution tool)
-    sqlcmd -S "." -d "CWS" -i "$sqlFile"  # Modify this line for your SQL tool
+    # sqlcmd -S "$ServerInstance" -d "$dbName" -i "$sqlFile"  # Modify this line for your SQL tool
+    PGPASSWORD=$DB_PASSWORD psql -h $ServerInstance -p $PORT -U $DB_USER -d $dbName -f "$sqlFile"
+
     
     # Check if sqlcmd succeeded
     if [ $? -eq 0 ]; then
