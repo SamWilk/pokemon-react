@@ -50,16 +50,12 @@ for sqlFile in "$sqlScriptFolder"/*.sql; do
     
     PGPASSWORD=$DB_PASSWORD psql -h $ServerInstance -p $PORT -U $DB_USER -d $dbName -f "$sqlFile"
 
-$PORT -U $DB_USER -d $dbName -f "$sqlFile"
-cho "Error executing $sqlFile"
+        if [ $? -eq 0 ]; then
+      echo "Successfully executed $sqlFile"
+    else
+      echo "Error executing $sqlFile"
     fi
   else
     echo "No .sql files found in the folder."
   fi
 done
-
-# Finish message
-echo "Finished"
-read -p "Press Enter to exit..."
-
-
