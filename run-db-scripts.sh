@@ -48,14 +48,10 @@ for sqlFile in "$sqlScriptFolder"/*.sql; do
   if [ -f "$sqlFile" ]; then
     echo "Executing SQL script: $sqlFile"
     
-    # Run the SQL script (adjust for your SQL execution tool)
     PGPASSWORD=$DB_PASSWORD psql -h $ServerInstance -p $PORT -U $DB_USER -d $dbName -f "$sqlFile"
-    
-    # Check if sqlcmd succeeded
-    if [ $? -eq 0 ]; then
-      echo "Successfully executed $sqlFile"
-    else
-      echo "Error executing $sqlFile"
+
+$PORT -U $DB_USER -d $dbName -f "$sqlFile"
+cho "Error executing $sqlFile"
     fi
   else
     echo "No .sql files found in the folder."

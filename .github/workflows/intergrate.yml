@@ -37,6 +37,14 @@ jobs:
 
     - name: Install psql client
       run: sudo apt-get install postgresql-client
+
+    - name: Create .env file with secrets
+      run: |
+        echo "DB_HOST=${{ secrets.DB_HOST }}" > .env
+        echo "PORT=${{ secrets.PORT }}" >> .env
+        echo "DB=${{ secrets.DB }}" >> .env
+        echo "DB_USER=${{ secrets.DB_USER }}" >> .env
+        echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
   
     - name: Execute shell script to run SQL files
       run: |
