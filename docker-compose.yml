@@ -1,15 +1,31 @@
-version: "3"
+version: "3.9"
+
 name: "pokemon-tracker-app"
 
 services:
-  pokemon-ui:
-    container_name: pokemon-ui
-    image: pokemon-react-ui:latest
-    ports:
-      - 4000:4000
-
   pokemon-server:
-    container_name: pokemon-server
-    image: pokemon-react-server:latest
+    build:
+      context: ./api
+      dockerfile: Dockerfile
     ports:
-      - 3000:3000
+      - "3000:3000"
+
+  pokemon-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "4000:4000"
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    command: ["nginx", "-g", "daemon off;"]
+    volumes:
+      - ./nginx-docker/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - pokemon-ui
+      - pokemon-server
