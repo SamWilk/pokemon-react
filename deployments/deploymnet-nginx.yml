@@ -20,4 +20,4 @@ spec:
         - name: pokemon-nginx
           image: samwilk18/pokemon-nginx:latest
           ports:
-            - containerPort: 4000
+            - containerPort: 80

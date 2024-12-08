@@ -4,4 +4,4 @@ COPY ./default.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
-# image name - Pokemon-React-UI
+# image name - Pokemon-nginx
