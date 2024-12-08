@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pokemon-nginx
+  namespace: pokemon-react
+  labels:
+    app: pokemon-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pokemon-nginx
+  template:
+    metadata:
+      labels:
+        app: pokemon-nginx
+    spec:
+      containers:
+        - name: pokemon-nginx
+          image: samwilk18/pokemon-nginx:latest
+          ports:
+            - containerPort: 4000
