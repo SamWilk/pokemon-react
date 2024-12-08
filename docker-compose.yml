@@ -13,6 +13,6 @@ services:
   pokemon-ui:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dev.Dockerfile
     ports:
       - "80:80"
