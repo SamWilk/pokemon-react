@@ -41,11 +41,11 @@ jobs:
         with:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/pokemon-nginx:latest
-          context: ./nginx-docker/Dockerfile
+          context: ./nginx-docker
 
   build-docker-image-ui:
     runs-on: ubuntu-latest
-    needs: build-docker-image-nginx
+    needs: confirm-build
 
     steps:
       - name: Set up Docker Buildx
@@ -65,7 +65,7 @@ jobs:
 
   build-docker-image-server:
     runs-on: ubuntu-latest
-    needs: build-docker-image-nginx
+    needs: confirm-build
 
     steps:
       - name: Checkout code
