@@ -1,11 +1,14 @@
-FROM node:18-alpine
-
-WORKDIR /app/server
+FROM node:18-alpine AS build
+WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-EXPOSE 4000
+RUN npm run build
 
-CMD ["npm","start"]
 
-# image name - Pokemon-React-UI
+FROM nginx:latest AS prod
+COPY --from=build /app/dist /etc/nginx/html/
+RUN  rm /etc/nginx/conf.d/default.conf
+COPY ./nginx-docker/default.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

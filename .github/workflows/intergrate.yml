@@ -65,8 +65,6 @@ jobs:
         with:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/pokemon-react-ui:latest
-          build-args: |
-            NODE_ENV=production
 
   build-docker-image-server:
     runs-on: ubuntu-latest
