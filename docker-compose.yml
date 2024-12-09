@@ -6,9 +6,11 @@ services:
   pokemon-server:
     build:
       context: ./api
-      dockerfile: Dockerfile
+      dockerfile: Dev.Dockerfile
     ports:
       - "3000:3000"
+    networks:
+      - pokemon-network
 
   pokemon-ui:
     build:
@@ -16,6 +18,8 @@ services:
       dockerfile: Dev.Dockerfile
     ports:
       - "80:80"
+    networks:
+      - pokemon-network
 
   pokemon-database:
     container_name: pokemon-database
@@ -29,6 +33,12 @@ services:
       POSTGRES_DB: ${DB}
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - pokemon-network
+
+networks:
+  pokemon-network:
+    driver: bridge
 
 volumes:
   postgres_data:
