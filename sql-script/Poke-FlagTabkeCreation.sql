@@ -1,4 +1,5 @@
 CREATE TABLE
+    IF NOT EXISTS 
     pokemonflag (
         pokemonflagID UUID DEFAULT uuid_generate_v4 () PRIMARY KEY,
         pokemonID int not null,

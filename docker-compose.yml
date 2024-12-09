@@ -16,3 +16,19 @@ services:
       dockerfile: Dev.Dockerfile
     ports:
       - "80:80"
+
+  pokemon-database:
+    container_name: pokemon-database
+    image: postgres:15-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
