@@ -20,5 +20,4 @@ spec:
         - name: pokemon-ui
           image: samwilk18/pokemon-react-ui:latest
           ports:
-            - containerPort: 4000
-  
+            - containerPort: 80
