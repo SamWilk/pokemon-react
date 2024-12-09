@@ -14,7 +14,7 @@ dist-ssr
 data
 docker-compose.yaml
 .env
-.env.*
+.env.local
 pokemon-psql
 populate-database.js
 
