@@ -91,7 +91,7 @@ jobs:
       - name: Execute shell script to run SQL files
         run: |
           chmod +x ./run-db-scripts.sh
-          ./run-db-scripts.sh
+          ./run-db-scripts.sh -s ${{ secrets.DB_HOST }} -d ${{ secrets.DB }} -n .production
 
       - name: Clean up PostgreSQL
         run: |
