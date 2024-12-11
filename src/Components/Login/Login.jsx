@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./Login.css";
 import LoginForm from "./LoginComponent/LoginForm";
 import SignUpForm from "./SignupComponent/SignUpForm";
-import pokeball from "../../Images/poke-ball.png";
+import pokeball from "../../../public/pokeball-outline.png";
 
 const Login = () => {
   const [loginState, setLoginState] = useState(true);
