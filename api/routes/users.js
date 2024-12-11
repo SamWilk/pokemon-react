@@ -3,7 +3,7 @@ const db = require("../config/DBContext");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { v4 } = require("uuid");
-require("dotenv").config({ path: `.env${process.env.NODE_ENV}` });
+require("dotenv").config();
 const authenticateToken = require("../config/AuthenticateToken");
 
 const router = express.Router();

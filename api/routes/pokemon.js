@@ -3,7 +3,7 @@ const path = require("path");
 const fs = require("fs");
 const db = require("../config/DBContext");
 const authenticateToken = require("../config/AuthenticateToken");
-require("dotenv").config({ path: `.env${process.env.NODE_ENV}` });
+require("dotenv").config();
 
 const router = express.Router();
 

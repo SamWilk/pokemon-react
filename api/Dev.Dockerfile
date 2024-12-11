@@ -1,8 +1,6 @@
 FROM node:18-alpine
 
 WORKDIR /app/server
-ARG NODE_ENV=.local
-ENV NODE_ENV=${NODE_ENV}
 COPY package*.json ./
 RUN npm install
 COPY . .
