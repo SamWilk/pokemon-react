@@ -19,7 +19,7 @@ const LoginForm = () => {
     name: "",
     password: "",
   };
-
+  console.log(APIURL)
   const onSubmit = async (values) => {
     try {
       const response = await fetch(`${APIURL}/users/login`, {

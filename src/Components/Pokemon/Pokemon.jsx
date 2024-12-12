@@ -161,6 +161,7 @@ const Pokemon = () => {
               );
             })}
           </div>
+          <div>Box for sort pokemon list</div>
         </div>
         <div className="Side-Bottom">
           <button className="GenButton" onClick={() => setShowModal(true)}>
