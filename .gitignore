@@ -16,7 +16,6 @@ docker-compose.yaml
 .env
 .env.local
 pokemon-psql
-populate-database.js
 
 # Editor directories and files
 .vscode/*
