@@ -5,20 +5,11 @@ name: "pokemon-tracker-app"
 services:
   pokemon-server:
     build:
-      context: ./api
+      context: ../api
       dockerfile: Dev.Dockerfile
-    env_file: ./api/.env
+    env_file: ../api/.env
     ports:
       - "3000:3000"
-    networks:
-      - pokemon-network
-
-  pokemon-ui:
-    build:
-      context: .
-      dockerfile: Dev.Dockerfile
-    ports:
-      - "88:80"
     networks:
       - pokemon-network
 
@@ -28,7 +19,7 @@ services:
     restart: always
     ports:
       - "8080:5432"
-    env_file: .env.local
+    env_file: ../.env.local
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
