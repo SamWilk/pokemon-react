@@ -13,14 +13,14 @@ services:
     networks:
       - pokemon-network
 
-  # pokemon-ui:
-  #   build:
-  #     context: .
-  #     dockerfile: Dev.Dockerfile
-  #   ports:
-  #     - "80:80"
-  #   networks:
-  #     - pokemon-network
+  pokemon-ui:
+    build:
+      context: .
+      dockerfile: Dev.Dockerfile
+    ports:
+      - "88:80"
+    networks:
+      - pokemon-network
 
   pokemon-database:
     container_name: pokemon-database

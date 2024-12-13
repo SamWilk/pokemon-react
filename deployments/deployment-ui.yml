@@ -21,3 +21,21 @@ spec:
           image: samwilk18/pokemon-react-ui:latest
           ports:
             - containerPort: 80
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 60
+            timeoutSeconds: 6
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 60
+            timeoutSeconds: 6
+            successThreshold: 1
+            failureThreshold: 3

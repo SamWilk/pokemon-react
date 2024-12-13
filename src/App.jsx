@@ -11,7 +11,7 @@ function App() {
     const url = getMyUrl();
 
     if (!cookies.Bearer) {
-      window.location.replace(`${url}/pokemon-react/login`);
+      window.location.replace(`${url}/login`);
     }
 
     CheckUser(url);
@@ -28,7 +28,7 @@ function App() {
         },
       });
       if (userResponse.status != "200") {
-        window.location.replace(`${url}/pokemon-react/login`);
+        window.location.replace(`${url}/login`);
       }
     } catch (error) {
       console.error(error);

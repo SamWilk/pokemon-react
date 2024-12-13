@@ -37,13 +37,11 @@ router.post("/api/users", async (request, response) => {
         client.query(query, (err, res) => {
           if (err) {
             console.error(err);
-            console.log("No Pokemon Found");
             response.status(400).send();
           } else {
             response.status(201).send(request.body.name);
           }
         });
-        //response.status(201).send("User Created");
       }
     });
     client.release();
