@@ -2,8 +2,8 @@
 
 const config = {
   production: {
-    SiteUrl: "http://pokemon-react.com", // Your production API URL
-    APIUrl: "http://pokemon-react.com/api",
+    SiteUrl: "http://www.pokemon-react.com", // Your production API URL
+    APIUrl: "http://139.144.255.36/api",
   },
   development: {
     SiteUrl: "http://localhost:88", // Your development API URL
