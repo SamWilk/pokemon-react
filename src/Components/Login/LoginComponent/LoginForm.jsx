@@ -48,7 +48,6 @@ const LoginForm = () => {
         });
         params.set("userID", user.userID);
         params.set("userName", user.name);
-        console.log(url);
         window.location.replace(`${url}/?${params}`);
       }
     } catch (error) {

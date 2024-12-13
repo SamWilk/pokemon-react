@@ -21,4 +21,22 @@ spec:
           image: samwilk18/pokemon-react-server:latest
           ports:
             - containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /api
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 60
+            timeoutSeconds: 6
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /api
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 60
+            timeoutSeconds: 6
+            successThreshold: 1
+            failureThreshold: 3
   

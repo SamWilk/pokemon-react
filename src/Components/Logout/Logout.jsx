@@ -15,7 +15,7 @@ const Logout = () => {
     removeCookie("Bearer", {
       path: "/",
     });
-    window.location.replace(`${url}/pokemon-react/login`);
+    window.location.replace(`${url}/login`);
   };
 
   return (
