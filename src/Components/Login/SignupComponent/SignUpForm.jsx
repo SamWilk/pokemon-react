@@ -37,8 +37,8 @@ const SignUpForm = () => {
         body: JSON.stringify(values),
       });
       if (response.status != "201") {
-        setInvalidLogin("User already exists with username or email");
-        throw new Error("User already exists with username or email");
+        setInvalidLogin("User already exists with email");
+        throw new Error("User already exists with email");
       } else {
         const loginResponse = await fetch(`${APIUrl}/users/login`, {
           method: "POST",
