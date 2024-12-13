@@ -146,6 +146,33 @@ router.delete(
   }
 );
 
+router.delete(
+  "/api/users/delete/pokemon/all",
+  authenticateToken,
+  async (request, response) => {
+    const currentUser = request.user;
+    const query = {
+      text: `
+      delete from pokemonflag pf
+      where pf.userid = $1
+      `,
+      values: [currentUser.userID],
+    };
+    try {
+      const client = await db.connect();
+
+      client.query(query, (err, res) => {
+        if (err) response.status(400).send();
+      });
+      response.status(202).send("All Flags removed");
+      client.release();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+
 router.get("/api/pokemon/gen/:generation", async (request, response) => {
   const query = {
     text: ` select *

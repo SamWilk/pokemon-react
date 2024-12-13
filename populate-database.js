@@ -6,7 +6,7 @@ const pool = new Pool({
   user: "postgres",
   host: "localhost",
   database: "pokemon-react",
-  password: "test",
+  password: "GATORbait2028",
   port: 8080,
 });
 
@@ -14,7 +14,7 @@ async function fetchPokemonData() {
   const baseUrl = "https://pokeapi.co/api/v2/pokemon/";
   const pokemonList = [];
 
-  for (let i = 965; i <= 1025; i++) {
+  for (let i = 0; i <= 1025; i++) {
     try {
       const response = await axios.get(`${baseUrl}${i}`);
       const transformedPokemon = transformPokemonData(response.data);

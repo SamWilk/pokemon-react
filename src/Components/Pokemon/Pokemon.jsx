@@ -9,6 +9,9 @@ import UserPage from "../UserPage/User";
 import User from "../../Objects/User";
 import { ValidateUserMethod } from "../Auth/ValidateUser";
 import { useFormik } from "formik";
+import { sortList } from "../PokemonList/functions/SortPokemonList";
+import { UncheckAllPokemon } from "../PokemonList/functions/UncheckAllPokemon";
+
 
 const Pokemon = () => {
   const [pokemonList, SetPokemonList] = useState(new Array());
@@ -18,10 +21,19 @@ const Pokemon = () => {
   const [showModal, setShowModal] = useState(false);
   const [currentUser, setCurrentUser] = useState(new User());
   const [invalidUpdate, setInvalidUpdate] = useState();
+  const [sort, setSort] = useState(false)
 
   let genArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const APIUrl = getMyAPIUrl();
   const url = getMyUrl();
+
+  useEffect(() => {
+    if(sort){
+      SetPokemonList(sortList(pokemonList, sort, false))
+    }else if (sort == false){
+      GetPokemon();
+    }
+  }, [sort])
 
   useEffect(() => {
     GetPokemon();
@@ -35,12 +47,16 @@ const Pokemon = () => {
     setCurrentUser(await ValidateUserMethod(cookies));
   };
 
+  const resetPokemonList = () => {
+    SetPokemonList(sortList(pokemonList, sort, true))
+  }
+
   const GetPokemon = async () => {
     if (pokemonGen == 0) {
       // Intial Get
       const defaultResponse = await fetch(`${APIUrl}/pokemon`);
       const pokemonList = await defaultResponse.json();
-
+      
       //User Specific Get
       const userResponse = await fetch(`${APIUrl}/users/pokemon`, {
         method: "GET",
@@ -137,7 +153,7 @@ const Pokemon = () => {
       <div className="SideColumn">
         {/* <GenFilter /> */}
         <div className="Side-Top">
-          <h4>Choose the Generation</h4>
+          <h5>Choose the Generation</h5>
           <div className="GenContainer">
             <input
               className="GenButton"
@@ -162,10 +178,17 @@ const Pokemon = () => {
             })}
           </div>
           <div>
-            <button className="GenButton">Sort by Checked Pokemon</button>
+            <button className={sort ? "GenButtonSelected" : "GenButton"} onClick={() => setSort(!sort)}>Sort Checked Pokemon</button>
+          </div>
+          <div>
           </div>
         </div>
         <div className="Side-Bottom">
+          <button className="GenButton" onClick={() => {
+                  UncheckAllPokemon(currentUser , cookies)
+                  setSort(false)
+                  resetPokemonList()
+              }}>Uncheck all Pokemon</button>
           <button className="GenButton" onClick={() => setShowModal(true)}>
             Profile
           </button>
@@ -188,7 +211,7 @@ const Pokemon = () => {
       </div>
       <div className="ListHolder">
         {pokemonList.length >= 1 ? (
-          <PokemonList List={pokemonList} Generation={pokemonGen} />
+          <PokemonList List={pokemonList} Generation={pokemonGen}/>
         ) : (
           <div className="LoadingScreen">
             <img

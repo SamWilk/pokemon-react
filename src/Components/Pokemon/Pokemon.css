@@ -26,6 +26,22 @@
     align-items: center;
 }
 
+.GenButtonSelected{
+    border: 0px;
+    background-color: #94B0B3;
+    padding: .25rem;
+    color: black;
+    transition: .3s ease;
+    box-shadow: 0 0 4px black;
+    margin-bottom: .75vh;
+}
+
+.GenButtonSelected:hover{
+    transform: scale(1.04);
+    background-color: #324B4D;
+    color: white;
+}
+
 .GenButton{
     border: 0px;
     background-color: #324B4D;
@@ -33,6 +49,7 @@
     color: white;
     transition: .3s ease;
     box-shadow: 0 0 4px black;
+    margin-bottom: .75vh;
 }
 
 .GenButton:hover{

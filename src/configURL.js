@@ -1,7 +1,6 @@
 import config from "./config";
 
 export function getMyUrl() {
-  console.log(process.env.NODE_ENV);
   if (process.env.NODE_ENV === "development") {
     return config.development.SiteUrl;
   } else if (process.env.NODE_ENV === "production") {
