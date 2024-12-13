@@ -23,7 +23,7 @@ spec:
             - containerPort: 3000
           livenessProbe:
             httpGet:
-              path: /healthz
+              path: /api
               port: 3000
             initialDelaySeconds: 5
             periodSeconds: 60
@@ -32,7 +32,7 @@ spec:
             failureThreshold: 3
           readinessProbe:
             httpGet:
-              path: /healthz
+              path: /api
               port: 3000
             initialDelaySeconds: 5
             periodSeconds: 60
