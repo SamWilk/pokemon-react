@@ -36,19 +36,27 @@ echo "Server Instance: $ServerInstance"
 echo "Database Name: $dbName"
 
 sqlScriptFolder="$(pwd)/sql-script"
+sqlInsertScriptFile="$(pwd)/sql-script/check-run-scripts/insert-into-schema.sql"
+
+result=`PGPASSWORD=$DB_PASSWORD psql -h $ServerInstance -p $PORT -U $DB_USER -d $dbName -Atc "SELECT ssr.name FROM sqlscriptrun ssr;"`
 
 for sqlFile in "$sqlScriptFolder"/*.sql; do
-  if [ -f "$sqlFile" ]; then
-    echo "Executing SQL script: $sqlFile"
-    
-    PGPASSWORD=$DB_PASSWORD psql -h $ServerInstance -p $PORT -U $DB_USER -d $dbName -f "$sqlFile"
 
-        if [ $? -eq 0 ]; then
-      echo "Successfully executed $sqlFile"
-    else
-      echo "Error executing $sqlFile"
-    fi
+  runScript=true
+  filename=$(basename "$sqlFile")
+
+  if echo "$result" | grep -w -q "$filename"; then
+    echo "$filename already executed"
   else
-    echo "No .sql files found in the folder."
+      echo "Executing SQL script: $filename"
+
+      PGPASSWORD=$DB_PASSWORD psql -h $ServerInstance -p $PORT -U $DB_USER -d $dbName -f "$sqlFile"
+      PGPASSWORD=$DB_PASSWORD psql -h $ServerInstance -p $PORT -U $DB_USER -d $dbName -v name="'$filename'" -f "$sqlInsertScriptFile"
+
+      if [ $? -eq 0 ]; then
+        echo "Successfully executed $filename"
+      else
+        echo "Error executing $filename"
+      fi
   fi
 done
