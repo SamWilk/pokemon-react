@@ -42,7 +42,6 @@ result=`PGPASSWORD=$DB_PASSWORD psql -h $ServerInstance -p $PORT -U $DB_USER -d 
 
 for sqlFile in "$sqlScriptFolder"/*.sql; do
 
-  runScript=true
   filename=$(basename "$sqlFile")
 
   if echo "$result" | grep -w -q "$filename"; then
