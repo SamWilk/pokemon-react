@@ -10,7 +10,7 @@ const Login = () => {
     <div className="App">
       <div className="Sub-App-Container">
         <div className="Login-Title">
-          <h1>Pokemon React Tracker</h1>
+          <h1>Pokemon React Tracker Hello Jon</h1>
           <img src={pokeball} alt="Pokemon-Ball" height={150} width={150} />
         </div>
 
