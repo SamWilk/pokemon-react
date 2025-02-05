@@ -110,4 +110,4 @@ jobs:
       - name: Deploy k8s yaml
         id: deploy-k8s-yaml
         run: |
-          kubectl -n pokemon-react rollout restart deployment
+          kubectl -n ${{ vars.KUB_NAMESPACE }} rollout restart deployment
