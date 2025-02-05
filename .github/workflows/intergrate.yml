@@ -7,6 +7,11 @@ on:
   workflow_dispatch:
 
 jobs:
+  echothings:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello there from $DB"
+
   confirm-build:
     runs-on: ubuntu-latest
     steps:
