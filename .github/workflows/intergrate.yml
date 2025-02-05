@@ -10,7 +10,7 @@ jobs:
   echothings:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello there from $DB"
+      - run: echo "Hello there from ${{ vars.DB }}."
 
   confirm-build:
     runs-on: ubuntu-latest
