@@ -7,11 +7,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  echothings:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "Hello there from ${{ vars.DB }}."
-
   confirm-build:
     runs-on: ubuntu-latest
     steps:
@@ -34,14 +29,14 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: $DOCKERHUB_USERNAME
+          username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: $DOCKERHUB_USERNAME/pokemon-react-ui:latest
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/pokemon-react-ui:latest
 
   build-docker-image-server:
     runs-on: ubuntu-latest
@@ -61,14 +56,14 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: $DOCKERHUB_USERNAME
+          username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: $DOCKERHUB_USERNAME/pokemon-react-server:latest
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/pokemon-react-server:latest
           context: ./api
 
   sync-db:
@@ -87,8 +82,8 @@ jobs:
       - name: Create .env file with secrets
         run: |
           echo "DB_HOST=${{ secrets.DB_HOST }}" > .env.production
-          echo "PORT=$PORT" >> .env.production
-          echo "DB=$DB" >> .env.production
+          echo "PORT=${{ vars.PORT }}" >> .env.production
+          echo "DB=${{ vars.DB }}" >> .env.production
           echo "DB_USER=${{ secrets.DB_USER }}" >> .env.production
           echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env.production
           echo "NODE_ENV=production" >> .env.production
@@ -96,7 +91,7 @@ jobs:
       - name: Execute shell script to run SQL files
         run: |
           chmod +x ./run-db-scripts.sh
-          ./run-db-scripts.sh -s ${{ secrets.DB_HOST }} -d $DB -n .production
+          ./run-db-scripts.sh -s ${{ secrets.DB_HOST }} -d ${{ vars.DB }} -n .production
 
       - name: Clean up PostgreSQL
         run: |
