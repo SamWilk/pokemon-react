@@ -1,9 +1,6 @@
 name: Linter
 
 on:
-  push:
-    branches:
-      - "main"
   workflow_dispatch:
 
 jobs:
@@ -42,3 +39,4 @@ jobs:
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: false
+          VALIDATE_JAVASCRIPT_ES: true
