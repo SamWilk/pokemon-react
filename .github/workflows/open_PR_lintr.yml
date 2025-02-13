@@ -42,6 +42,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BRANCH: origin/main
           VALIDATE_ALL_CODEBASE: false
-          VALIDATE_JAVASCRIPT_ES: true
+          VALIDATE_JAVASCRIPT_PRETTIER: true
+          FIX_JAVASCRIPT_PRETTIER: true
           VALIDATE_DOCKERFILE_HADOLINT: true
           VALIDATE_JSX_PRETTIER: true
+          FIX_JSX_PRETTIER: true
