@@ -40,3 +40,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: false
           VALIDATE_JAVASCRIPT_ES: true
+          VALIDATE_DOCKERFILE_HADOLINT: true
+          VALIDATE_JSX_PRETTIER: true
