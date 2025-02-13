@@ -1,6 +1,8 @@
 name: Linter
 
 on:
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -43,4 +45,3 @@ jobs:
           VALIDATE_JAVASCRIPT_ES: true
           VALIDATE_DOCKERFILE_HADOLINT: true
           VALIDATE_JSX_PRETTIER: true
-          USE_FIND_ALGORITHM: true
