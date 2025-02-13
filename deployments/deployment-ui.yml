@@ -21,3 +21,4 @@ spec:
           image: samwilk18/pokemon-react-ui:latest
           ports:
             - containerPort: 80
+            
