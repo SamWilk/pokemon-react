@@ -49,5 +49,6 @@ jobs:
           FIX_JSX_PRETTIER: true
           VALIDATE_YAML: true
           VALIDATE_YAML_PRETTIER: true
+          FIX_YAML_PRETTIER: true
           VALIDATE_GITHUB_ACTIONS: true
           VALIDATE_CHECKOV: true
