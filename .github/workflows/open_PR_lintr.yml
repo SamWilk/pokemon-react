@@ -1,9 +1,8 @@
 name: Linter
 
 on:
-  push:
-    branches:
-      - "main"
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -41,4 +40,15 @@ jobs:
         env:
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BRANCH: origin/main
           VALIDATE_ALL_CODEBASE: false
+          VALIDATE_JAVASCRIPT_PRETTIER: true
+          FIX_JAVASCRIPT_PRETTIER: true
+          VALIDATE_DOCKERFILE_HADOLINT: true
+          VALIDATE_JSX_PRETTIER: true
+          FIX_JSX_PRETTIER: true
+          VALIDATE_YAML: true
+          VALIDATE_YAML_PRETTIER: true
+          FIX_YAML_PRETTIER: true
+          VALIDATE_GITHUB_ACTIONS: true
+          VALIDATE_CHECKOV: true

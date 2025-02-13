@@ -29,7 +29,7 @@ spec:
             periodSeconds: 60
             timeoutSeconds: 6
             successThreshold: 1
-            failureThreshold: 3
+            failureThreshold: 4
           readinessProbe:
             httpGet:
               path: /api
@@ -38,5 +38,5 @@ spec:
             periodSeconds: 60
             timeoutSeconds: 6
             successThreshold: 1
-            failureThreshold: 3
+            failureThreshold: 4
   
