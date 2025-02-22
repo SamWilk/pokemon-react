@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { login } from "../../Auth/AuthSlice";
 import { getMyAPIUrl, getMyUrl } from "../../../configURL";
 import { useCookies } from "react-cookie";
-import { useSearchParams } from "react-router-dom";
 
 const SignUpForm = () => {
   const [invalidLogin, setInvalidLogin] = useState();
@@ -13,7 +12,6 @@ const SignUpForm = () => {
   const APIUrl = getMyAPIUrl();
   const url = getMyUrl();
   const [, setCookie] = useCookies("Bearer");
-  const [params] = useSearchParams();
 
   const validate = (values) => {
     let errors = {};
@@ -64,9 +62,7 @@ const SignUpForm = () => {
             path: "/",
             expires: fiveDaysFromNow,
           });
-          params.set("userID", user.userID);
-          params.set("userName", user.name);
-          window.location.replace(`${url}/?${params}`);
+          window.location.replace(`${url}`);
         }
       }
     } catch (error) {
