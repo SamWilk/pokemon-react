@@ -94,7 +94,6 @@ router.get(
   "/api/users/getUser",
   authenticateToken,
   async (request, response) => {
-    console.log(request.user);
     response.status(200).send(request.user);
   }
 );

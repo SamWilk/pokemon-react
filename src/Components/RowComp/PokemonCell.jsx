@@ -4,7 +4,7 @@ import { getMyAPIUrl } from "../../configURL.js";
 import { useCookies } from "react-cookie";
 import React from "react";
 
-const PokemonCell = ({ pokemon, search, UpdatePokemonCell }) => {
+const PokemonCell = ({ pokemon, search }) => {
   let className = "cell";
   const APIUrl = getMyAPIUrl();
   const [cookies] = useCookies(["Bearer"]);
@@ -13,8 +13,8 @@ const PokemonCell = ({ pokemon, search, UpdatePokemonCell }) => {
 
   if (pokemon.Selected === true) {
     className = "cell-selected";
-  }else {
-    className = "cell"
+  } else {
+    className = "cell";
   }
 
   const updatePokemon = async (pokemon) => {
@@ -39,12 +39,12 @@ const PokemonCell = ({ pokemon, search, UpdatePokemonCell }) => {
   };
 
   return (
-    <div id='zoom' className={className} onClick={() => updatePokemon(pokemon)}>
+    <div id="zoom" className={className} onClick={() => updatePokemon(pokemon)}>
       {pokemon == undefined ? (
         <div />
       ) : (
         <span>
-          <div className='subHeader'>
+          <div className="subHeader">
             <div>{pokemon.id}</div>
             <div>{pokemon.name}</div>
           </div>

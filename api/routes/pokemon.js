@@ -172,7 +172,6 @@ router.delete(
   }
 );
 
-
 router.get("/api/pokemon/gen/:generation", async (request, response) => {
   const query = {
     text: ` select *
