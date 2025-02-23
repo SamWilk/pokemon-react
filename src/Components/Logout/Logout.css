@@ -1,18 +1,38 @@
-.GenButton{
-    border: 0px;
-    background-color: #324B4D;
-    padding: .25rem;
-    color: white;
-    transition: .3s ease;
-    box-shadow: 0 0 4px black;
-    min-width: 10vw;
-    max-width: 10vw;
+.GenButton {
+  border: 0px;
+  background-color: #324b4d;
+  padding: 0.25rem;
+  color: white;
+  transition: 0.3s ease;
+  box-shadow: 0 0 4px black;
+  min-width: 10vw;
+  max-width: 10vw;
 }
 
-.GenButton:hover{
+.GenButton:hover {
+  transform: scale(1.04);
+  background-color: #94b0b3;
+  color: black;
+  min-width: 10vw;
+  max-width: 10vw;
+}
+
+@media screen and (max-width: 480px) {
+  .GenButton {
+    border: 0px;
+    background-color: #324b4d;
+    padding: 0.25rem;
+    color: white;
+    transition: 0.3s ease;
+    box-shadow: 0 0 4px black;
+    margin-bottom: 0.75vh;
+    min-width: 18vw;
+  }
+
+  .GenButton:hover {
     transform: scale(1.04);
-    background-color: #94B0B3;
+    background-color: #94b0b3;
     color: black;
-    min-width: 10vw;
-    max-width: 10vw;
+    min-width: 18vw;
+  }
 }
