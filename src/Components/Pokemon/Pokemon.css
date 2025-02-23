@@ -151,4 +151,24 @@
     color: black;
     min-width: 18vw;
   }
+
+  .LoadingScreen {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 55vw;
+    max-width: 55vw;
+    height: 65vh;
+    padding-right: 15px; /* Increase/decrease this value for cross-browser compatibility */
+  }
+
+  .ListHolder {
+    display: flex;
+    flex-direction: row;
+    min-height: 90vh;
+    min-width: 80vw;
+  }
 }
