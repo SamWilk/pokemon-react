@@ -62,7 +62,7 @@ router.post("/api/users/login", async (request, response) => {
     client.query(query, async (err, res) => {
       if (err) {
         console.error(err);
-        response.status(500).send("User not found");
+        response.status(500).send(`An Error occured ${err}`);
       }
       if (res.rowCount == 0) {
         response.status(404).send("No user found");
