@@ -5,13 +5,24 @@ import { useDispatch } from "react-redux";
 import { login } from "../../Auth/AuthSlice";
 import { getMyAPIUrl, getMyUrl } from "../../../configURL";
 import { useCookies } from "react-cookie";
+import {
+  RegExpMatcher,
+  TextCensor,
+  englishDataset,
+  englishRecommendedTransformers,
+} from "obscenity";
 
 const SignUpForm = () => {
   const [invalidLogin, setInvalidLogin] = useState();
+  const [showError, setIshowError] = useState(false);
   const dispatch = useDispatch();
   const APIUrl = getMyAPIUrl();
   const url = getMyUrl();
   const [, setCookie] = useCookies("Bearer");
+  const matcher = new RegExpMatcher({
+    ...englishDataset.build(),
+    ...englishRecommendedTransformers,
+  });
 
   const validate = (values) => {
     let errors = {};
@@ -27,46 +38,60 @@ const SignUpForm = () => {
     return errors;
   };
 
+  const checkLanguage = (values) => {
+    if (matcher.hasMatch(values.name)) {
+      console.log("The input text contains profanities.");
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const onSubmit = async (values) => {
-    try {
-      const response = await fetch(`${APIUrl}/users`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
-      if (response.status != "201") {
-        setInvalidLogin("User already exists with email");
-        throw new Error("User already exists with email");
-      } else {
-        const loginResponse = await fetch(`${APIUrl}/users/login`, {
+    if (!checkLanguage(values)) {
+      setIshowError(false);
+      try {
+        const response = await fetch(`${APIUrl}/users`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(values),
         });
-        if (loginResponse.status != "200") {
-          throw new Error("User was not found");
+        if (response.status != "201") {
+          setInvalidLogin("User already exists with email");
+          throw new Error("User already exists with email");
         } else {
-          const body = await loginResponse.json();
-          const user = {
-            name: body.name,
-            userID: body.userID,
-          };
-
-          dispatch(login(user));
-          const currentDate = new Date();
-
-          // Add five days to the current date
-          const fiveDaysFromNow = new Date(currentDate);
-          fiveDaysFromNow.setUTCDate(currentDate.getUTCDate() + 5);
-          setCookie("Bearer", body.accessToken, {
-            path: "/",
-            expires: fiveDaysFromNow,
+          const loginResponse = await fetch(`${APIUrl}/users/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(values),
           });
-          window.location.replace(`${url}`);
+          if (loginResponse.status != "200") {
+            throw new Error("User was not found");
+          } else {
+            const body = await loginResponse.json();
+            const user = {
+              name: body.name,
+              userID: body.userID,
+            };
+
+            dispatch(login(user));
+            const currentDate = new Date();
+
+            // Add five days to the current date
+            const fiveDaysFromNow = new Date(currentDate);
+            fiveDaysFromNow.setUTCDate(currentDate.getUTCDate() + 5);
+            setCookie("Bearer", body.accessToken, {
+              path: "/",
+              expires: fiveDaysFromNow,
+            });
+            window.location.replace(`${url}`);
+          }
         }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
+    } else {
+      setIshowError(true);
     }
   };
 
@@ -85,6 +110,9 @@ const SignUpForm = () => {
           <Form className="Submit-Form">
             <div className="form-control">
               <label htmlFor="name">User Name</label>
+              {showError ? (
+                <div className="badName">Cannot use that name</div>
+              ) : null}
               <Field name="name" placeholder="Joe" className="form-input" />
             </div>
 
