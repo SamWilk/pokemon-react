@@ -154,25 +154,24 @@ const Pokemon = () => {
         <div className="Side-Top">
           <h5>Choose the Generation</h5>
           <div className="GenContainer">
-            <input
+            <button
               className="GenButton"
-              type="button"
-              value={`All Gen`}
               onClick={async () => {
                 await GenFilter(0);
               }}
-            />
+            >
+              All Gens
+            </button>
             {genArray.map((gen) => {
               return (
-                <input
+                <button
                   className="GenButton"
-                  key={gen}
-                  type="button"
-                  value={`Generation ${gen}`}
                   onClick={async () => {
                     await GenFilter(gen);
                   }}
-                />
+                >
+                  Gen {gen}
+                </button>
               );
             })}
           </div>

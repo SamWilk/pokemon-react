@@ -1,76 +1,76 @@
-.ListHolder{
-    display: flex;
-    flex-direction: row;
-    min-height: 90vh;
+.ListHolder {
+  display: flex;
+  flex-direction: row;
+  min-height: 90vh;
 }
 
-.SideColumn{
-    min-width: 12vw;
-    max-width: 12vw;
-    min-height: 90vh;
-    max-height: 95vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    align-content: center;
+.SideColumn {
+  min-width: 12vw;
+  max-width: 12vw;
+  min-height: 90vh;
+  max-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
 }
 
-.GenContainer{
-    display: flex;
-    flex-direction: column;
-    min-height: 30vh;
-    max-width: 10vw;
-    justify-content: space-evenly;
-    align-content: center;
-    align-items: center;
+.GenContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 30vh;
+  max-width: 10vw;
+  justify-content: space-evenly;
+  align-content: center;
+  align-items: center;
 }
 
-.GenButtonSelected{
-    border: 0px;
-    background-color: #94B0B3;
-    padding: .25rem;
-    color: black;
-    transition: .3s ease;
-    box-shadow: 0 0 4px black;
-    margin-bottom: .75vh;
+.GenButtonSelected {
+  border: 0px;
+  background-color: #94b0b3;
+  padding: 0.25rem;
+  color: black;
+  transition: 0.3s ease;
+  box-shadow: 0 0 4px black;
+  margin-bottom: 0.75vh;
 }
 
-.GenButtonSelected:hover{
-    transform: scale(1.04);
-    background-color: #324B4D;
-    color: white;
+.GenButtonSelected:hover {
+  transform: scale(1.04);
+  background-color: #324b4d;
+  color: white;
 }
 
-.GenButton{
-    border: 0px;
-    background-color: #324B4D;
-    padding: .25rem;
-    color: white;
-    transition: .3s ease;
-    box-shadow: 0 0 4px black;
-    margin-bottom: .75vh;
+.GenButton {
+  border: 0px;
+  background-color: blue;
+  padding: 0.25rem;
+  color: white;
+  transition: 0.3s ease;
+  box-shadow: 0 0 4px black;
+  margin-bottom: 0.75vh;
 }
 
-.GenButton:hover{
-    transform: scale(1.04);
-    background-color: #94B0B3;
-    color: black;
+.GenButton:hover {
+  transform: scale(1.04);
+  background-color: #94b0b3;
+  color: black;
 }
 
-.Side-Bottom{
-    min-width: 10vw;
+.Side-Bottom {
+  min-width: 10vw;
 }
 
-.Side-Top{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: center;
+.Side-Top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
 }
 
-.LoadingScreen{
-    display: flex;
+.LoadingScreen {
+  display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
@@ -83,30 +83,72 @@
 }
 
 @keyframes sway {
-    0% {
-      transform: translateX(0);
-    }
-    16% {
-      transform: translateY(-10px);
-    }
-    32% {
-        transform: translateY(10px);
-    }
-    48% {
-        transform: translateY(0px);
-    }
-    64% {
-      transform: translateY(-10px);
-    }
-    80% {
-        transform: translateY(10px);
-    }
-    100% {
-        transform: translateY(0);
-    }
+  0% {
+    transform: translateX(0);
   }
-  
-  /* Apply the animation to the "Image" class */
-  .loadingImage {
-    animation: sway 2s ease-in-out infinite;
+  16% {
+    transform: translateY(-10px);
   }
+  32% {
+    transform: translateY(10px);
+  }
+  48% {
+    transform: translateY(0px);
+  }
+  64% {
+    transform: translateY(-10px);
+  }
+  80% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Apply the animation to the "Image" class */
+.loadingImage {
+  animation: sway 2s ease-in-out infinite;
+}
+
+@media screen and (max-width: 480px) {
+  .SideColumn {
+    min-width: 20vw;
+    max-width: 20vw;
+    min-height: 90vh;
+    max-height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+  }
+
+  .GenContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 30vh;
+    max-width: 18vw;
+    min-width: 18vw;
+    justify-content: space-evenly;
+    align-content: center;
+    align-items: center;
+  }
+
+  .GenButton {
+    border: 0px;
+    background-color: #324b4d;
+    padding: 0.25rem;
+    color: white;
+    transition: 0.3s ease;
+    box-shadow: 0 0 4px black;
+    margin-bottom: 0.75vh;
+  }
+
+  .GenButton:hover {
+    transform: scale(1.04);
+    background-color: #94b0b3;
+    color: black;
+    min-width: 18vw;
+  }
+}
