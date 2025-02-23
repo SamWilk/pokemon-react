@@ -20,6 +20,7 @@
     "js-cookie": "^3.0.5",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
+    "obscenity": "^0.4.3",
     "pg": "^8.13.1",
     "pg-pool": "^3.7.0",
     "react": "^18.2.0",
