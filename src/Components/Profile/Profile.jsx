@@ -3,7 +3,7 @@ import { getMyAPIUrl, getMyUrl } from "../../configURL";
 import { useCookies } from "react-cookie";
 import { GetUserDetails } from "./functions/FetchUserProfile";
 import { PokemonList } from "../PokemonList/PokemonList";
-import Blastoise from "../../Images/Blastoise.png";
+//import Blastoise from "../../Images/Blastoise.png";
 import PokeButton from "../PokeButton/PokeButton";
 import "./Profile.css";
 
