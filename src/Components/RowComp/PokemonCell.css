@@ -69,8 +69,8 @@ div .cell-selected {
     align-items: center;
     justify-content: center;
     min-height: 10rem;
-    min-width: 9rem;
-    max-width: 9rem;
+    min-width: 7.5rem;
+    max-width: 7.5rem;
     background-color: #324b4d;
     margin: 1rem;
     transition-timing-function: ease-in;
