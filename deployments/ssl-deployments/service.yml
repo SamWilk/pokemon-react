@@ -9,6 +9,6 @@ spec:
     app: pokemon-react-app
   ports:
     - protocol: TCP
-      port: 80
+      port: 443
       targetPort: 80
   type: LoadBalancer
