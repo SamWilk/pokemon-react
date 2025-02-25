@@ -196,12 +196,12 @@ const Pokemon = () => {
           >
             Uncheck all Pokemon
           </button>
-          <button
+          {/* <button
             className="GenButton"
             // onClick={() => window.location.replace(`${url}/profile`)}
           >
             Profile
-          </button>
+          </button> */}
           <UserPage
             open={showModal}
             onClose={() => {
