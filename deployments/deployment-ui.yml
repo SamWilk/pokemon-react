@@ -21,3 +21,11 @@ spec:
           image: samwilk18/pokemon-react-ui:latest
           ports:
             - containerPort: 80
+          volumeMounts:
+            - name: ssl-certificate
+              mountPath: /etc/ssl/cert
+              readOnly: true
+      volumes:
+        - name: ssl-certificate
+          secret:
+            secretName: my-cert-tls

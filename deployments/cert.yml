@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: my-cert
+  namespace: pokemon-react
+spec:
+  secretName: my-cert-tls  # Name of the secret where the certificate will be stored
+  issuerRef:
+    name: letsencrypt-prod  # Name of the ClusterIssuer to use
+    kind: ClusterIssuer
+  commonName: pokemon-react.com
+  dnsNames:
+  - pokemon-react.com
