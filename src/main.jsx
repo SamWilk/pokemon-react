@@ -7,15 +7,14 @@ import Login from "./Components/Login/Login";
 import { Provider } from "react-redux";
 import store from "./Store/store";
 import Profile from "./Components/Profile/Profile";
-import Helmet from React;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/login" element={<Login />} />
+          <Route path='/' element={<App />} />
+          <Route path='/login' element={<Login />} />
           {/* <Route path="/profile" element={<Profile />} /> */}
         </Routes>
       </BrowserRouter>
