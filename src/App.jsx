@@ -37,11 +37,6 @@ function App() {
 
   return (
     <div className='App'>
-      <script
-        async
-        src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2217671962826733'
-        crossorigin='anonymous'
-      ></script>
       <div className='PokeContainer'>
         <Pokemon />
       </div>
