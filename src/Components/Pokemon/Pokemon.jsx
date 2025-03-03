@@ -184,9 +184,7 @@ const Pokemon = () => {
               Sort Checked Pokemon
             </button>
           </div>
-          <div>
-            <GoogleAd />
-          </div>
+          <div>{/* <GoogleAd /> */}</div>
         </div>
         <div className="Side-Bottom">
           <button
