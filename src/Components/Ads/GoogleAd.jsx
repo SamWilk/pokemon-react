@@ -14,12 +14,12 @@ const GoogleAd = () => {
       <script
         async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2217671962826733"
-        crossorigin="anonymous"
+        crossOrigin="anonymous"
       ></script>
       {/* <!-- Ad-sidebar --> */}
       <ins
-        class="adsbygoogle"
-        style="display:block"
+        className="adsbygoogle"
+        style={{ display: "block" }}
         data-ad-client="ca-pub-2217671962826733"
         data-ad-slot="6322845707"
         data-ad-format="auto"
