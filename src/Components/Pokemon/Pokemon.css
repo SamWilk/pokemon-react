@@ -82,6 +82,12 @@
   padding-right: 15px; /* Increase/decrease this value for cross-browser compatibility */
 }
 
+.Google-ad-bar {
+  display: flex;
+  min-height: 37vh;
+  min-width: 10vw;
+}
+
 @keyframes sway {
   0% {
     transform: translateX(0);
@@ -133,6 +139,13 @@
     justify-content: space-evenly;
     align-content: center;
     align-items: center;
+  }
+
+  .Google-ad-bar {
+    display: flex;
+    min-height: 37vh;
+    min-width: 18vw;
+    max-width: 18vw;
   }
 
   .GenButton {

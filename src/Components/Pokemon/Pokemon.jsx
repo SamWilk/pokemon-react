@@ -149,14 +149,14 @@ const Pokemon = () => {
   };
 
   return (
-    <div className="ListHolder">
-      <div className="SideColumn">
+    <div className='ListHolder'>
+      <div className='SideColumn'>
         {/* <GenFilter /> */}
-        <div className="Side-Top">
+        <div className='Side-Top'>
           <h5>Choose the Generation</h5>
-          <div className="GenContainer">
+          <div className='GenContainer'>
             <button
-              className="GenButton"
+              className='GenButton'
               onClick={async () => {
                 await GenFilter(0);
               }}
@@ -166,7 +166,7 @@ const Pokemon = () => {
             {genArray.map((gen) => {
               return (
                 <button
-                  className="GenButton"
+                  className='GenButton'
                   onClick={async () => {
                     await GenFilter(gen);
                   }}
@@ -184,14 +184,13 @@ const Pokemon = () => {
               Sort Checked Pokemon
             </button>
           </div>
-          <div>
-            {" "}
+          <div className='Google-ad-bar'>
             <GoogleAd />
           </div>
         </div>
-        <div className="Side-Bottom">
+        <div className='Side-Bottom'>
           <button
-            className="GenButton"
+            className='GenButton'
             onClick={() => {
               UncheckAllPokemon(currentUser, cookies);
               setSort(false);
@@ -223,15 +222,15 @@ const Pokemon = () => {
           <Logout />
         </div>
       </div>
-      <div className="ListHolder">
+      <div className='ListHolder'>
         {pokemonList.length >= 1 ? (
           <PokemonList List={pokemonList} Generation={pokemonGen} />
         ) : (
-          <div className="LoadingScreen">
+          <div className='LoadingScreen'>
             <img
-              className="loadingImage"
+              className='loadingImage'
               src={Blastoise}
-              alt="Blastoise"
+              alt='Blastoise'
               height={300}
               width={300}
             />
