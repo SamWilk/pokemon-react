@@ -1,0 +1,10 @@
+.NavBar-Container {
+  display: flex;
+  flex-direction: row;
+  min-width: 100vw;
+  min-height: 8vh;
+  align-items: center;
+  justify-content: center;
+
+  background-color: green;
+}

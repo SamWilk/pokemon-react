@@ -44,7 +44,7 @@ const LoginForm = () => {
           path: "/",
           expires: fiveDaysFromNow,
         });
-        window.location.replace(`${url}`);
+        window.location.replace(`${url}/landing`);
       }
     } catch (error) {
       console.error(error);

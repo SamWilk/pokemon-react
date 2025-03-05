@@ -3,6 +3,7 @@ import "./App.css";
 import Pokemon from "./Components/Pokemon/Pokemon";
 import { getMyAPIUrl, getMyUrl } from "./configURL";
 import { useCookies } from "react-cookie";
+import NavBar from "./Components/NavBar/NavBar";
 
 function App() {
   const [cookies] = useCookies("Bearer");
@@ -36,8 +37,8 @@ function App() {
   };
 
   return (
-    <div className='App'>
-      <div className='PokeContainer'>
+    <div className="App">
+      <div className="PokeContainer">
         <Pokemon />
       </div>
     </div>

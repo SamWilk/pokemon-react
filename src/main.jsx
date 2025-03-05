@@ -1,21 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
 import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./Components/Login/Login";
 import { Provider } from "react-redux";
 import store from "./Store/store";
-import Profile from "./Components/Profile/Profile";
+import RouteConfig from "./RouteConfig/RouteConfig";
+import NavBar from "./Components/NavBar/NavBar";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
+      <NavBar />
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<App />} />
-          <Route path='/login' element={<Login />} />
-          {/* <Route path="/profile" element={<Profile />} /> */}
+          {RouteConfig.map(({ path, element }, index) => (
+            <Route key={index} path={path} element={element} />
+          ))}
         </Routes>
       </BrowserRouter>
     </Provider>

@@ -149,24 +149,25 @@ const Pokemon = () => {
   };
 
   return (
-    <div className='ListHolder'>
-      <div className='SideColumn'>
+    <div className="ListHolder">
+      <div className="SideColumn">
         {/* <GenFilter /> */}
-        <div className='Side-Top'>
+        <div className="Side-Top">
           <h5>Choose the Generation</h5>
-          <div className='GenContainer'>
+          <div className="GenContainer">
             <button
-              className='GenButton'
+              className="GenButton"
               onClick={async () => {
                 await GenFilter(0);
               }}
             >
               All Gens
             </button>
-            {genArray.map((gen) => {
+            {genArray.map((gen, index) => {
               return (
                 <button
-                  className='GenButton'
+                  key={index}
+                  className="GenButton"
                   onClick={async () => {
                     await GenFilter(gen);
                   }}
@@ -184,13 +185,13 @@ const Pokemon = () => {
               Sort Checked Pokemon
             </button>
           </div>
-          <div className='Google-ad-bar'>
+          <div className="Google-ad-bar">
             <GoogleAd />
           </div>
         </div>
-        <div className='Side-Bottom'>
+        <div className="Side-Bottom">
           <button
-            className='GenButton'
+            className="GenButton"
             onClick={() => {
               UncheckAllPokemon(currentUser, cookies);
               setSort(false);
@@ -222,15 +223,15 @@ const Pokemon = () => {
           <Logout />
         </div>
       </div>
-      <div className='ListHolder'>
+      <div className="ListHolder">
         {pokemonList.length >= 1 ? (
           <PokemonList List={pokemonList} Generation={pokemonGen} />
         ) : (
-          <div className='LoadingScreen'>
+          <div className="LoadingScreen">
             <img
-              className='loadingImage'
+              className="loadingImage"
               src={Blastoise}
-              alt='Blastoise'
+              alt="Blastoise"
               height={300}
               width={300}
             />

@@ -84,7 +84,7 @@ const SignUpForm = () => {
               path: "/",
               expires: fiveDaysFromNow,
             });
-            window.location.replace(`${url}`);
+            window.location.replace(`${url}/landing`);
           }
         }
       } catch (error) {
